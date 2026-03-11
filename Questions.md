@@ -1,3 +1,7 @@
+### OBJECTIVE
+To analyze sales data and build an interactive Power BI dashboard that helps stakeholders monitor revenue, profit, 
+and sales performance across products, regions, and time periods for better data-driven decision making.
+
 ### Grain of your fact table?
 One row per sales transaction per product per order
 This means each row represented a single product sold in a specific order on a specific date.
