@@ -357,6 +357,232 @@ IF([Product Rank] <= 10, [Total Revenue])
 
 
 
+### TABLES USed and COLUMNS used
+TABLES -  
+FactSales  
+DimProduct  
+DimRegion  
+DimCustomer  
+DimDate  
+
+FACTSALES - 
+OrderID	Unique order identifier
+OrderDate	  
+ProductID	  
+CustomerID	  
+RegionID	  
+SalesRepID	  
+Quantity	  
+Revenue	  
+Cost	  
+Profit
+
+
+DimProduct-  
+ProductID	Primary key  
+ProductName  	
+Category  
+Brand	  
+Cost  
+
+DimRegion
+RegionID	 
+RegionName	  
+Country   
+
+DimCustomer
+CustomerID  	
+CustomerName	  
+CustomerSegment   
+
+
+### DIfferent source dataset 
+Now these tables are in different data sources  
+we use JOIN and VIEW  
+
+### WHOLE PROCESS  
+STEP 1 -  
+Companies usually store this raw data in staging tables.  
+Example staging tables:  
+stg_sales_orders  
+stg_products  
+stg_regions  
+
+
+STEP 2-  
+Data Profiling  
+Before transforming data, analysts explore the data  
+Check number of rows - SELECT COUNT(*) FROM stg_sales_orders;  
+
+Check duplicates:  
+SELECT OrderID, COUNT(*)  
+FROM stg_sales_orders  
+GROUP BY OrderID  
+HAVING COUNT(*) > 1;  
+
+Check NULL values:  
+SELECT *  
+FROM stg_sales_details  
+WHERE Revenue IS NULL;   
+
+
+Step 3 —   
+Cleaning Data Using CTE  
+CTEs are widely used to clean data.
+Example: Removing duplicate orders.
+WITH CTE AS   
+(   
+SELECT *,   
+ROW_NUMBER() OVER(PARTITION BY order_id ORDER BY order_date) AS rn   
+FROM sales_orders   
+)   
+DELETE FROM CTE   
+WHERE rn > 1   
+
+SELECT *
+FROM sales_orders
+WHERE rn = 1;
+
+ Step 4 -  
+ Handling NULL data  
+SELECT  
+OrderID,  
+ProductID,  
+Quantity,  
+ISNULL(Revenue,0) AS Revenue  
+FROM stg_sales_details;  
+
+
+ Step 5 —   JOINS and Derivied columns
+ Combining Tables Using JOIN   and   
+SELECT
+d.OrderID,  
+p.ProductName,  
+(d.Revenue - p.Cost) AS Profit  
+FROM stg_sales_details d  
+JOIN stg_products p  
+ON d.ProductID = p.ProductID;    
+
+Step 7-  
+Stored Procedure for Automation  
+Companies automate data preparation using stored procedures.  
+
+
+Step 8 — Final Analytical View  
+Finally, analysts create a view for Power BI.
+CREATE VIEW vw_sales_analytics  
+AS  
+SELECT  
+OrderID,  
+OrderDate,  
+ProductName,  
+RegionName,  
+Quantity,  
+Revenue,  
+Profit  
+FROM fact_sales;  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
