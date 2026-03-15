@@ -1,6 +1,132 @@
 ### OBJECTIVE
 To analyze sales data and build an interactive Power BI dashboard that helps stakeholders monitor revenue, profit,   
 and sales performance across products, regions, and time periods for better data-driven decision making.  
+The objective of the project was to build a Sales Performance Analytics Dashboard that allows business stakeholders to monitor key metrics such as revenue,   profit, regional performance, and product sales trends. The dashboard helps management identify high-performing products and regions and make data-driven   business decisions.  
+
+### What were the main tables used in your dataset?
+Fact Table- fact_sales   
+Dimension Tables  - dim_product, dim_region, dim_date, dim_customer  
+
+### How did you handle NULL values in your project?
+For numeric fields like revenue or quantity, I replaced NULL with 0 using ISNULL().  
+For critical fields like OrderID or ProductID, records with NULL values were removed because they would break relationships.  
+For text fields like region names, I replaced NULL with default values like "Unknown".  
+
+SELECT ISNULL(Revenue,0) AS Revenue   
+FROM sales_data;  
+
+### Why did you create a SQL view for the dataset?
+A SQL view was created to simplify the Power BI data model and centralize business logic in the database.  
+Instead of loading multiple tables into Power BI, the dashboard connects to a single analytical view, which improves maintainability and performance.   
+
+
+### What is the difference between a fact table and a dimension table?
+Fact tables contain measurable business metrics such as revenue, quantity, and profit.  
+Dimension tables contain descriptive attributes such as product name, region, and customer details.   
+
+### How did you check data quality in the project?
+Data quality checks included:  
+checking duplicates  
+checking NULL values  
+verifying row counts  
+validating relationships between tables   
+
+### What window functions did you use?
+I used window functions such as:  
+ROW_NUMBER() for duplicate detection  
+RANK() for ranking products by revenue   
+SELECT  
+RANK() OVER(ORDER BY SUM(Revenue) DESC) AS Rank  
+FROM sales_data  
+GROUP BY ProductID;    
+
+
+### CTE to remove duplicate-  
+A CTE (Common Table Expression) is a temporary result set used to simplify complex queries.   
+It improves readability and query structure.   
+
+### What is the difference between UNION and UNION ALL?
+UNION removes duplicate rows.  
+UNION ALL keeps duplicates and is faster.  
+
+### What INDEX did you use to optimize performance?
+Indexes were created on key columns used in joins and filters.  
+Indexes improve query performance by reducing table scans.   
+An index improves query speed.  
+CREATE INDEX idx_orderid  
+ON sales_orders(OrderID);  
+
+
+### How did you identify top-selling products?
+I grouped sales by product and calculated total revenue.  
+SELECT  
+ProductID,  
+SUM(Revenue) AS TotalRevenue  
+FROM sales_data  
+GROUP BY ProductID  
+ORDER BY TotalRevenue DESC;   
+
+
+### What business insights did the dashboard provide?
+top-performing products    
+regions generating the most revenue  
+yearly sales trends   
+
+
+### How do you QUERY OPTIMISATION?
+alway choose specific columns   
+use top/limit       
+use index  
+
+EXECUTION PLAN -  
+When query runs the execution plan decides if we do full table scans or check for indexes  
+then it checks if joins are possible or not  
+and then retirve data for select statement  
+and stores the result of execution plan to CACHE   
+
+
+### How do you handle slowly changing dimensions?
+
+
+
+### What would happen if your dataset grows from 500K rows to 50 million?
+
+
+
+### Find the second highest salary from a table.
+SELECT MAX(Salary)  
+FROM Employees  
+WHERE Salary < (SELECT MAX(Salary) FROM Employees);  
+
+### Find Duplicate Records
+SELECT OrderID, COUNT(*)  
+FROM sales_orders  
+GROUP BY OrderID  
+HAVING COUNT(*) > 1;   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Grain of your fact table?
 One row per sales transaction per product per order  
@@ -256,7 +382,7 @@ rn > 1 → duplicate
 
 
 CTE to remove duplicate-  
-
+A CTE (Common Table Expression) is a temporary result set used to simplify complex queries.  
 WITH CTE AS  
 (  
 SELECT *,  
