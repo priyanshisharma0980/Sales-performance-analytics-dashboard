@@ -53,8 +53,9 @@ UNION ALL keeps duplicates and is faster.
 Indexes were created on key columns used in joins and filters.  
 Indexes improve query performance by reducing table scans.   
 An index improves query speed.  
-CREATE INDEX idx_orderid  
-ON sales_orders(OrderID);  
+CREATE INDEX idx_orderid    
+ON EmpSalary1(salary);   
+EXEC sp_helpindex 'EmpSalary1';   
 
 
 ### How did you identify top-selling products?
@@ -82,15 +83,38 @@ EXECUTION PLAN -
 When query runs the execution plan decides if we do full table scans or check for indexes  
 then it checks if joins are possible or not  
 and then retirve data for select statement  
-and stores the result of execution plan to CACHE   
+and stores the result of execution plan to CACHE  
+
+Reads data from right to left  
+Now use TABLE SCAN   click click - Properties   
+check number of rows that are read  
+An index improves query speed.  
+CREATE INDEX idx_orderid    
+ON EmpSalary1(salary);   
+EXEC sp_helpindex 'EmpSalary1';   
 
 
 ### How do you handle slowly changing dimensions?
+3 types SCD 1,2,3    
+SCD 1- the new data replaces the old data  
+SCD 2 - new data adds in, without deleting anything. and all the historical records are kept in  
+SCD 3 - It stores only the current value and the immediately preceding value side-by-side in the same record.   
+SCD 2 - when new data comes, the status of old data = 0 and new data = 1  
+Merge employee as target  
+using stagingdatabase as source  
+on tagert.empid=source.empid    
+when matched and status =1   
+set status=0   
 
+Now inster data from staging database to original database using-  
+insert into employee
+select * from stagingdatabase  
 
 
 ### What would happen if your dataset grows from 500K rows to 50 million?
-
+Use incremental refresh - Do not reload the entire dataset every time. Load only new or changed data.   
+Instead of storing every transaction for reporting, we create summarized data. Eg - for each category grup it and then show the toal revenue instaed of individual 
+Indexes help SQL Server find rows faster.  
 
 
 ### Find the second highest salary from a table.
@@ -103,6 +127,63 @@ SELECT OrderID, COUNT(*)
 FROM sales_orders  
 GROUP BY OrderID  
 HAVING COUNT(*) > 1;   
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------     
+
+## POWER BI
+
+### YTD 
+YTD Revenue =  
+TOTALYTD(  
+    [Total Revenue],  
+    DimDate[Date]  
+)  
+
+### YoY %
+Revenue Last Year =    
+CALCULATE(  
+    [Total Revenue],  
+    SAMEPERIODLASTYEAR(DimDate[Date])   
+)  
+This will create a new measure table column for revenue last year    
+
+
+YoY Growth % =  
+DIVIDE(  
+    [Total Revenue] - [Revenue Last Year],   
+    [Revenue Last Year]  
+)  
+(to calculate revenue last year
+
+
+### TOP N
+Product Rank =  
+RANKX(  
+    ALL(DimProduct[ProductName]),   
+    [Total Revenue],  
+    ,  
+    DESC   
+)  
+
+
+### CHARTS
+Line charts show trends over time clearly.  
+Bar charts allow easy comparison between categories. Eg- Revenue by region and Revenue by product   
+Pie chart Shows percentage contribution. Eg- Revenue share by product category   
+
+
+### Roles in Power BI Services
+Admin	        full control  
+Member	      edit reports  
+Contributor	  publish reports  
+Viewer	      view dashboards    
+
+
+
+
+
 
 
 
