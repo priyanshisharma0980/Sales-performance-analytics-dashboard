@@ -152,15 +152,15 @@ Calculate Revenue From High Value Customers
 high_value_revenue = high_value_customers['total_spend'].sum()
 
 ### Most purchases between ₹500–₹3000
-import seaborn as sns
-import matplotlib.pyplot as plt
+import seaborn as sns  
+import matplotlib.pyplot as plt  
 
-sns.histplot(df['order_value'])
-plt.show()
+sns.histplot(df['order_value'])  
+plt.show()  
 
 
 ### Revenue by product category
-category_sales = df.groupby('product_category')['order_value'].sum()
+category_sales = df.groupby('product_category')['order_value'].sum()  
 
 
 
