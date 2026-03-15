@@ -1,23 +1,34 @@
 ### OBJECTIVE
-I analyzed around 300,000 customer transaction records to understand purchasing behavior.
-First, I extracted transaction data from a SQL database. Then I used Python (Pandas and NumPy) to clean and process the data.
-I performed exploratory data analysis to understand spending patterns, purchase frequency, and product category trends.
-Then I created customer segments based on total spending and identified high-value customers.
+I analyzed around 300,000 customer transaction records to understand customer purchasing behavior.  
+First, I extracted transaction data from a SQL database. Then I used Python (Pandas and NumPy) to clean and process the data.  
+I performed exploratory data analysis to understand spending patterns, purchase frequency, and product category trends.  
+Then I created customer segments based on total spending and identified high-value customers.  
 
 
 ### objective was to identify high-value customers and understand their purchasing behavior
 
+### IMP QUESTIONS
+Who are valuable customers?	Calculate total spend per customer   
+Who buys frequently?	Count orders per customer  
+Which products generate revenue?	Analyze category sales   
+
+
+
+
 ### What kind of data did you work with?
 The dataset contained customer transaction records.
+Main columns included:  
+customer_id  
+order_id   
+product_category  
+order_value  
+purchase_date  
+city  
+Each row represented one purchase made by a customer.    
 
-Main columns included:
-customer_id
-order_id
-product_category
-order_value
-purchase_date
-city
-Each row represented one purchase made by a customer.
+
+
+
 ### What data cleaning steps did you perform?
 I performed several cleaning steps:
 Removed duplicate transaction records
