@@ -57,6 +57,14 @@ CREATE INDEX idx_orderid
 ON EmpSalary1(salary);   
 EXEC sp_helpindex 'EmpSalary1';   
 
+INDEX on NON_PRIMARY KEY columns are called unclustered indexes
+Use database   
+GO  
+Create NONCLUSTERED Index IX_empname   
+ON Employee([name])
+GO  
+
+
 
 ### How did you identify top-selling products?
 I grouped sales by product and calculated total revenue.  
