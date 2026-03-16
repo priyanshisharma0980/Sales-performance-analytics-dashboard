@@ -185,35 +185,10 @@ Pie chart Shows percentage contribution. Eg- Revenue share by product category
 Admin	        full control  
 Member	      edit reports  
 Contributor	  publish reports  
-Viewer	      view dashboards    
+Viewer	      view dashboards  
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+---------------------------------------------------------------------------------------------------------------------    
 
 
 ### Grain of your fact table?
@@ -330,6 +305,8 @@ This helped me identify:
 • primary keys and foreign keys  
 • important metrics such as revenue and quantity  
 
+checking number of rows and columns  
+DESCRIBE table_name;   
 
 Checking dataset size -   
 SELECT COUNT(*)  
