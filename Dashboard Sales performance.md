@@ -109,14 +109,13 @@ SCD 2 - new data adds in, without deleting anything. and all the historical reco
 SCD 3 - It stores only the current value and the immediately preceding value side-by-side in the same record.   
 SCD 2 - when new data comes, the status of old data = 0 and new data = 1  
 Merge employee as target  
-using stagingdatabase as source  
+using stagingemployee as source  
 on tagert.empid=source.empid    
 when matched and status =1   
 set status=0   
-
-Now inster data from staging database to original database using-  
+Now insert data from staging database to original database using-  
 insert into employee
-select * from stagingdatabase  
+select * from stagingemployee
 
 
 ### What would happen if your dataset grows from 500K rows to 50 million?
