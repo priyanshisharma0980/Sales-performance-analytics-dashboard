@@ -1,4 +1,4 @@
-### Arrayis of same datatype
+### Array is of same datatype
 List - Mutable   
 Tuple - Immutable   
 
@@ -25,8 +25,108 @@ axis 1 = columns
 np.concatenate((arr1, arr2), axis=0)
 
 
+### usecols = used to specify the columns we want to read
+df = pd.read_csv('data.csv', usecols=['team', 'rebounds'])    
+
+np.count_nonzero(df)   
+
+you may need to use a raw string by prepending an r (e.g., r"C:\path\to\file.csv") to avoid Python interpreting backslashes as escape characters.    
+Using forward slashes works on all operating systems.     
 
 
+### PANDAS
+has 2 types of data   
+1. Series - Stores in form of index and data
+2. Datafaream - in form of columns and rows
+
+series1 = pd.Series(data=data_list, index=index_list)      
+Series must start with uppercase S   
+if we want the data pass the key series1[[1,2,3]]    
+
+### loc and iloc
+loc - used to retrieve data based on rows and columns   
+iloc - used to retrieve data based on rows and columns based on INDEX   (columns as index)    
+
+head and tail() - default display value is 5   
+
+### df.dtypes - returns datatype of each columns    
+df['serial_num].astype(float) - astype converts datatype    
+
+### drop
+df.drop(column='serial_num', inplace='True')    
+
+### datetime
+df['euro_dates'] = pd.to_datetime(df['date_strings'], format='%d/%m/%Y')     
+
+### unique
+df['country'].unique()   
+
+### Group by
+df.groupby('Category')['Sales'].sum()     
+
+### LAMBDA 
+numbers = [1, 2, 3, 4]     
+squared = list(map(lambda x: x**2, numbers))    
+ Lambdas allow you to write simple functions in a single line, reducing the number of lines of code compared to a full def function definition.    
+
+
+
+ ### PIVOT TABLE
+ data: The DataFrame you want to use.    
+values: The column(s) you want to aggregate. This can be a single column name or a list.   
+index: The column(s) whose unique values will become the row labels of the new table.   
+columns: The column(s) whose unique values will become the new column headers.    
+aggfunc: The function used for aggregation (e.g., 'mean', 'sum', 'count', 'min', 'max'). By default, it uses the mean. You can pass a single function,     
+a list of functions, or a dictionary to apply different functions to different value columns   
+
+pivot_df = df.pivot_table(values='Temp', index='Date', columns='City', aggfunc='mean')    
+
+
+### df.isnull()
+checkes the values that are NULL.    
+If not null returns FALSE    
+
+
+df.dropna(axis=0) -- will drop from rows     
+
+df.fillna('UNKNOWN')    
+
+### Fill column 'A' NaNs with 0, and column 'B' NaNs with 'missing'
+df_col_specific = df.fillna({'A': 0, 'B': 'missing'})    
+
+### ffill
+df_filled = df.ffill()    
+The missing values are filled with the value from the immediately preceding row in the same column.    
+
+
+### Window function
+rolling - provide a rolling option where you can decide window size(period) and apply various aggregation functions like mean sum count    
+used to perform moving window calculations on sequential data, such as time series    
+rolling_mean = df['value'].rolling(window=3).mean()     
+
+expanding_sum = df['value'].expanding().sum()     
+it will return the sum of each value and sum of values above it    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 
 
