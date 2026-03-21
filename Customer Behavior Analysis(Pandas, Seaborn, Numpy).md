@@ -80,7 +80,12 @@ I noticed that most customers spent below ₹3,000, while a smaller group spent 
 ### Did you check for outliers in the dataset?
 Yes, I checked for extreme order values using boxplots.   
 There were a few unusually large transactions, but they represented legitimate high purchases.   
-Instead of removing them, I kept them because they reflect actual high-value customers.   
+Instead of removing them, I kept them because they reflect actual high-value customers.     
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------      
 
 
 
@@ -113,7 +118,16 @@ conn = pyodbc.connect(
     "PWD=password"  
 )  
 
-df = pd.read_sql(query, conn)   
+query = """   
+SELECT   
+    customer_id,   
+    order_id,   
+    order_value,   
+    purchase_date  
+FROM sales.customer_transactions   
+"""   
+
+df = pd.read_sql(query, conn)    
 
 ### Understand the data
 df.shape    --- gives rows and columns   
@@ -179,6 +193,134 @@ plt.show()
 
 ### Revenue by product category
 category_sales = df.groupby('product_category')['order_value'].sum()    
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------     
+
+### STP framework
+segmentation targeting positioning   
+
+### understand the data
+df.describe()
+
+### correrlation
+correlation between variables     
+it describes linear depencency between variables   
+ranges from -1 to +1   +1 means very strong correlation  
+0 means they are not linearlly dependent   
+
+Heatmap used for correlations    
+s = sns.heatmap(df.corr(), vmin=-1, vmax=1)     
+
+### standardization
+from sklearn.preprocessing import standardScalar   
+scalar = standarScalar()   
+seg_std = scalar.fit_transform(df)
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------        
+
+
+
+### AUTOMATION in Python
+
+Business team identifies problem (low marketing conversion)     
+        ↓   
+Requirement meeting with stakeholders (marketing, analyst, product)   
+        ↓   
+Data analyst defines metrics (total_spend, frequency, segments)    
+        ↓   
+Identify data source (SQL database / data warehouse)       
+        ↓   
+Explore database tables (customer_transactions table)     
+        ↓   
+Write SQL queries to fetch required data    
+        ↓   
+Test SQL query in SQL tool (SSMS / DBeaver)      
+        ↓   
+Create Python script for full pipeline (customer_segmentation.py)      
+        ↓  
+Script includes:   
+   → database connection   
+   → data extraction (pd.read_sql)   
+   → data cleaning (duplicates, nulls)    
+   → feature engineering (total_spend, orders)    
+   → segmentation logic   
+   → storing output table    
+        ↓   
+Test Python script manually (very important step)    
+        ↓   
+Validate output data (check counts, revenue totals)   
+        ↓   
+Add logging and error handling in script (for production readiness)   
+        ↓   
+Store script on system/server (shared location or VM)   
+        ↓   
+Set up Task Scheduler on machine/server    
+        ↓   
+Configure task:   
+   → trigger (daily 6 AM)   
+   → program (python.exe)   
+   → argument (script path)   
+        ↓   
+Test Task Scheduler manually (Run option)     
+        ↓   
+Task Scheduler triggers daily job automatically    
+        ↓  
+Python executable starts    
+        ↓  
+Python script runs   
+        ↓   
+Script connects to SQL Server   
+        ↓   
+Latest transaction data is fetched   
+        ↓    
+Data cleaning happens (remove duplicates, handle nulls)   
+        ↓   
+Feature engineering:   
+   → total_spend per customer   
+   → total_orders per customer   
+        ↓   
+Customer segmentation applied (Low / Medium / High)    
+        ↓   
+Segmented data stored back into database (customer_segments table)    
+        ↓   
+Database now contains updated results   
+        ↓   
+Power BI / Tableau connected to this table    
+        ↓   
+Dashboard refresh scheduled (e.g., 7 AM)   
+        ↓   
+Dashboard pulls latest updated data   
+        ↓   
+Business users view updated insights    
+        ↓    
+Marketing team targets high-value customers    
+        ↓  
+Campaign performance improves (conversion rate increases)   
+        ↓  
+Analyst monitors results and refines logic if needed    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
