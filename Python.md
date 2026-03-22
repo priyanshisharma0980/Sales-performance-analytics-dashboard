@@ -108,6 +108,43 @@ expanding_sum = df['value'].expanding().sum()
 it will return the sum of each value and sum of values above it    
 
 
+### Vectorization
+s=pd.Series([cat,mat,none, rat])   
+s.str.startswith('c') all values except cat will be FALSE and none    
+srt is string accessor   
+
+String functions   
+upper(), lower(), Capitalize(), max(), len(), strip() - removes spaces form both end     
+
+Eg- if we have a full name seeprated with , and want first and last name  
+df['firstname']= df['name'].str.split(',').str.get(0)   
+
+
+### Timestamp
+particular moment of time 20 july 2022 10 AM  
+
+pd.timestamp('2023/01/09')   
+
+
+pd.date_range(start= , end=, freq = W-THU) this will give a column of the dates between start and end date   
+
+to get year with to_datetime   
+pd.to_datetime(df).dt.year
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
