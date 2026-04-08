@@ -141,6 +141,12 @@ HAVING COUNT(*) > 1;
 
 ## POWER BI
 
+### Revenue Growth =   
+DIVIDE(  
+    [Current Revenue] - [Previous Revenue],   
+    [Previous Revenue]    
+)    
+
 ### YTD 
 YTD Revenue =  
 TOTALYTD(  
@@ -157,7 +163,7 @@ CALCULATE(
 This will create a new measure table column for revenue last year    
 
 
-YoY Growth % =  
+### YoY Growth % =  
 DIVIDE(  
     [Total Revenue] - [Revenue Last Year],   
     [Revenue Last Year]  
@@ -165,7 +171,8 @@ DIVIDE(
 (to calculate revenue last year
 
 
-### TOP N
+### TOP N - 
+rankx() - used for Ranking items based on a measure, such as total sales, allowing for easy identification of top and bottom performers.   
 Product Rank =  
 RANKX(  
     ALL(DimProduct[ProductName]),   
@@ -174,6 +181,8 @@ RANKX(
     DESC   
 )  
 
+used with ALL - ALL product names, based on total_revenue   
+Then applied filter → Top 10 products.   
 
 ### CHARTS
 Line charts show trends over time clearly.  
@@ -671,7 +680,98 @@ RegionName,
 Quantity,  
 Revenue,  
 Profit  
-FROM fact_sales;  
+FROM fact_sales;   
+
+
+### DRILL DOWN  
+when we add, eg - product and store in x axis   
+y axis will be price  
+legend - store  
+
+we want in x axis to show details for each product under each store    
+we are using the bar chart there is a down arrow, click on it, it is drill down   
+if I click on each store then it will show for each product under each store    
+
+
+
+### Query folding  
+Process of pushing data transformation steps back to data source   
+used while implementing increamental refresh   
+supported for - removing, renaming, numeric calculations, joins etc    
+
+Does not support - customer columns,  merging, appending from different tables   
+Does not support - csv, excel files   
+
+in M language - value.nativequery(tablename, select * from table,[enablefolding=True])   
+
+
+
+### Row level security
+Modelling - manage roles - give roles eg- country - then select table, right click on add filter   
+in power BI services - Data set - 3 dots - security - enter IDs   
+
+Dynamic RSL   
+create a measure -    
+username = userprincipalname()    
+shared the email of accounts that have logged in   
+now got ot manage roles and in value add filter - use email and value = username (this is the measure we just created)   
+
+
+### Incremental refresh
+In power BI desktop go to table, then right click - Incremental refresh   
+In power query we need to set up parameters - Power query - New parameters   
+rangestart and rangeend    
+Type - date/time   
+current value = give a date    
+in your table you go to that table in power query and search for date column then right click   
+filter date/time - equals - now select parameter - and the parameter name   
+
+
+### Forecast
+Line chart - then right click - Forecast   
+we can go in format table and then format the forcast line colour   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
