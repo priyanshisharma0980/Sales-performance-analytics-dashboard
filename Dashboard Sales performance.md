@@ -727,17 +727,36 @@ In power query we need to set up parameters - Power query - New parameters
 rangestart and rangeend    
 Type - date/time   
 current value = give a date    
-in your table you go to that table in power query and search for date column then right click   
-filter date/time - equals - now select parameter - and the parameter name   
-
+-- in your table you go to that table in power query and search for date column then right click   
+-- filter date/time - custom filter - equals - now select parameter - and the parameter name   
+In model view, select the table right click - incremental refresh    
+select the data and the time   
 
 ### Forecast
 Line chart - then right click - Forecast   
 we can go in format table and then format the forcast line colour   
 
 
+### RUNNING TOTAL
+Running Total =    
+CALCULATE (   
+    [Total Sales],   
+    FILTER (   
+        ALLSELECTED ( 'Date' ),   
+        'Date'[Date] <= MAX ( 'Date'[Date] )    
+    )   
+)   
+
+OR     
+right click thable - new quick measure- running total    
+base value - numerical   
 
 
+
+### ALL and ALLSELECTED 
+in Power BI remove filters to calculate totals, typically for percentages.   
+Use ALL to ignore all filters (e.g., grand total of all time/regions). Use ALLSELECTED to ignore    
+only filters inside the visual but respect external filters like slicers (e.g., total of only the selected year).     
 
 
 
