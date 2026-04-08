@@ -226,6 +226,8 @@ fact tables used those keys as foreign keys
 • Used DAX measures instead of calculated columns when possible  
 • Created SQL views in Azure SQL Database to pre-transform data  
 • Ensured relationships were single direction and one-to-many  
+Disabling "Enable Load" in Power Query prevents a table from loading into the Power BI report view and data model,    
+reducing model size, improving performance, and cleaning up the field list.    
 
 
 ### Why did you create measures instead of calculated columns?    
