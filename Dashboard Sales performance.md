@@ -759,11 +759,27 @@ Use ALL to ignore all filters (e.g., grand total of all time/regions). Use ALLSE
 only filters inside the visual but respect external filters like slicers (e.g., total of only the selected year).     
 
 
+### SENTIMENT ANALYSIS
+Only in oremium capacity   
+In power query (only in power BI services) go to HOME- Text analytics  
+Sentiment score - summary - Okay   
+Sentiment Category =    
+SWITCH(  
+    TRUE(),   
+    'YourTable'[Sentiment Score] >= 0.7, "Good",   
+    'YourTable'[Sentiment Score] >= 0.4, "Neutral",   
+    "Bad"  
+)    
 
 
+### Row context and Filter context
+row context - based on each row dax calculations   
+filter context - based on slicer filtering   
 
 
-
+### supervised and unsupervised learning
+Supervised → regression, classification    
+Unsupervised → clustering, segmentation   
 
 
 
