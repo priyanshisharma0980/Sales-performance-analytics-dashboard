@@ -87,6 +87,8 @@ alway choose specific columns
 use top/limit       
 use index  
 
+IN POWER BI - Use unable load   
+
 EXECUTION PLAN -  
 When query runs the execution plan decides if we do full table scans or check for indexes  
 then it checks if joins are possible or not  
