@@ -133,7 +133,18 @@ pd.to_datetime(df).dt.year
 
 
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------     
 
+
+### Regression and Correlation  
+Correlation in data analysis is a statistical technique used to measure the strength and direction of a relationship between two quantitative variables.     Ranging from -1 to +1, a coefficient of +1 indicates a perfect positive correlation, -1 a perfect negative correlation, and 0 no correlation.    
+
+The measure of correlation is calculated by corelation coefficent     
++ve correlation - x increase with y, x decrease with y   (eg - price vs demand)    
+-ve correlation - x increases y decreases, x decreases and y increases    
+
+
+Regression - used to predict one variable with another   
 
 
 
