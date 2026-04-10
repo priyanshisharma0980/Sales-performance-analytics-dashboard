@@ -144,11 +144,24 @@ The measure of correlation is calculated by corelation coefficent
 -ve correlation - x increases y decreases, x decreases and y increases    
 
 
-Regression - used to predict one variable with another   
+Regression - used to predict one variable with respect another   
 
+Regression with Excel - Add in - Tool PAK - Data Analysis  
+Select whole table in input range   
+in output range select any blank cell    
+then Okay, it will give a score between -1 to +1    
 
+or in excel we can use correl - =CORREL(array1, array2)
 
+For Correlation-   
+IN Power BI - Use scatter plot   
+give x = product , y = sales   
+Now HOME - New quick measure - Calculation select correlation coefficent   
+select that measure and put in gauze chart   
+create a new measure and write - max = 1  now in options of gauze chart in maximum value select this measure   
 
+In regression we use LINEST function and create a DAX measure, and we calculate slope and intercept    
+intercept + slope * column
 
 
 
