@@ -8,5 +8,6 @@
 ### gaive name to pipeline - data ingestion  
 ### Now under Activities select - copy  
 ### Now select data that you want to upload as raw_data (go to github, because we have data there, select file, click raw, select URL)   
-### Go to the pipeline (select source - click + - search HTTP - now paste the link from github)   
+### Go to the pipeline (select source - click + - search HTTP + select csv - now paste the link from github)    
+### create linked service - in URL give the raw URL - Okay - Now select the option use first row as header   
 ### 
