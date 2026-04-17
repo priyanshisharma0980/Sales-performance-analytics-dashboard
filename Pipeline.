@@ -10,4 +10,136 @@
 ### Now select data that you want to upload as raw_data (go to github, because we have data there, select file, click raw, select URL)   
 ### Go to the pipeline (select source - click + - search HTTP + select csv - now paste the link from github)    
 ### create linked service - in URL give the raw URL - Okay - Now select the option use first row as header   
-### 
+### now go to sink - select new - Azure data lake gen 2 - now create new linked service and select storage account - Oaky   
+### Now select the file path - select raw folder   
+### click on validate   
+### now click debug  
+### now search for storage account - under it you will see the folder
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Azure Synapse Code
+
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'nyc_taxi_db')
+BEGIN
+    CREATE DATABASE nyc_taxi_db;
+END
+GO
+
+USE nyc_taxi_db;
+GO
+
+-- NYC Public Dataset
+IF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'nyc_taxi_source')
+BEGIN
+    CREATE EXTERNAL DATA SOURCE nyc_taxi_source
+    WITH (
+        LOCATION = 'https://azureopendatastorage.blob.core.windows.net/nyctlc'
+    );
+END
+GO
+
+
+-- Your Storage Account (Target)
+IF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'adf_storage')
+BEGIN
+    CREATE EXTERNAL DATA SOURCE adf_storage
+    WITH (
+        LOCATION = 'https://adfstorageacc.blob.core.windows.net/adftarget'
+    );
+END
+GO
+
+CREATE OR ALTER VIEW dbo.nyc_taxi_bronze AS
+SELECT
+    vendorID,
+    tpepPickupDateTime,
+    tpepDropoffDateTime,
+    passengerCount,
+    tripDistance,
+    puLocationId,
+    doLocationId,
+    fareAmount,
+    tipAmount,
+    totalAmount,
+    paymentType
+FROM
+    OPENROWSET(
+        BULK 'yellow/puYear=*/puMonth=*/*.parquet',
+        DATA_SOURCE = 'nyc_taxi_source',
+        FORMAT = 'PARQUET'
+    ) AS result;
+GO
+
+
+CREATE OR ALTER VIEW dbo.nyc_taxi_silver AS
+SELECT *
+FROM dbo.nyc_taxi_bronze
+WHERE fareAmount > 0
+  AND tripDistance > 0
+  AND passengerCount > 0;
+GO
+
+
+CREATE OR ALTER VIEW dbo.nyc_taxi_gold AS
+SELECT
+    *,
+    DATEDIFF(MINUTE, tpepPickupDateTime, tpepDropoffDateTime) AS trip_duration_minutes,
+    fareAmount / NULLIF(tripDistance, 0) AS fare_per_mile,
+    tipAmount / NULLIF(fareAmount, 0) AS tip_percentage
+FROM dbo.nyc_taxi_silver;
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'parquet_format')
+BEGIN
+    CREATE EXTERNAL FILE FORMAT parquet_format
+    WITH (
+        FORMAT_TYPE = PARQUET
+    );
+END
+GO
+IF EXISTS (SELECT * FROM sys.external_tables WHERE name = 'nyc_taxi_gold_ext')
+BEGIN
+    DROP EXTERNAL TABLE dbo.nyc_taxi_gold_ext;
+END
+GO
+CREATE EXTERNAL TABLE dbo.nyc_taxi_gold_ext
+WITH (
+    LOCATION = 'gold/',
+    DATA_SOURCE = adf_storage,
+    FILE_FORMAT = parquet_format
+)
+AS
+SELECT *
+FROM dbo.nyc_taxi_gold;
+GO
+gpi-nzex-suj
+
+
