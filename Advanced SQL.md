@@ -112,6 +112,9 @@ DB creates clustered index by default (unless specified otherwise)
 
 
 
+### What is an Execution Plan 
+👉 Execution plan = the exact strategy the database chooses to run your query   
+which index, which join, how much data, in what order, and at what cost   
 
 
 
