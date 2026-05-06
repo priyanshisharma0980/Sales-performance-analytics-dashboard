@@ -174,7 +174,8 @@ SELECT
 FROM Sales;    
 
 
-
+### SQL SERVER AGENT
+in sql server - got o sql server agents - jobs - new jobs
 
 
 
