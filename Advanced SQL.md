@@ -44,6 +44,85 @@ Eg - there are customers A and B, with multiple sales
 WHERE
 
 
+### Partition in SQL
+ dividing large tables into smaller, more manageable segments called partitions.    
+ It doesn’t magically “make queries faster” on its own; it works by reducing how much data the database needs to touch.     
+ splitting one big table into smaller pieces (partitions)…but still treating it like one table logically     
+ 
+ 1. PArtition function - based on partition key eg- DATE    
+ Create partiton function parititonbyyear(date)     
+ AS range LEFT for values('2022-12-31', '2023-12-31')    
+
+ 2. FILE Group -
+It creates files for each different year to store them seperately    
+add the file groups    
+alter database databasename ADD filegroup year_2024;   
+    
+TYPES -   
+1. Range - based on date    
+2. LIST - based on region/country (specific values)   
+3. Hash - divides data equally
+
+Partition Pruning -	Reads only relevant partitions         
+Parallel Processing -	Multiple partitions processed simultaneously     
+
+Does Partitioning Take More Space?   
+👉 Slightly yes   
+Metadata per partition    
+
+### Partition pruning 
+is a database performance optimization technique that boosts query speed by scanning only relevant data partitions, skipping unnecessary ones.    
+
+### What is sliding window partitioning?
+👉 Used in real production systems  
+Add new partition monthly   
+Drop old partition   
+
+
+### Indexing?
+👉 Index = a separate data structure that helps the database find rows quickly without scanning the whole table    
+B-TREE Structure:   
+Root node → entry point   
+Intermediate nodes → navigation    
+Leaf nodes → actual data or pointers    
+
+Types of Indexes (Core)-   
+Clustered Index	- Data stored in sorted order   
+Non-Clustered Index	- Separate structure with pointers    
+
+
+Clustered vs Non-Clustered Index (Deep Comparison)   
+Clustered Index = actual table data is stored in sorted order   
+Non-Clustered Index = separate structure → points to data    
+ 
+
+Difference between scan and seek?
+Seek = direct access
+Scan = sequential read       
+
+### INDEXing takes more space than partitioning   
+
+### What is index fragmentation?
+👉 Index becomes disorganized → slower performance   
+
+### Is indexing automatically created on primary key? Why?
+👉 Yes (in most DBs like SQL Server)    
+Primary key must be unique + fast lookup      
+DB creates clustered index by default (unless specified otherwise)    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
