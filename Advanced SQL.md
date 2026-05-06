@@ -115,6 +115,88 @@ DB creates clustered index by default (unless specified otherwise)
 ### What is an Execution Plan 
 👉 Execution plan = the exact strategy the database chooses to run your query   
 which index, which join, how much data, in what order, and at what cost   
+EXECUTION PLAN -   
+When query runs the execution plan decides if we do full table scans or check for indexes   
+then it checks if joins are possible or not    
+and then retirve data for select statement   
+and stores the result of execution plan to CACHE   
+
+Reads data from right to left    
+Now use TABLE SCAN click click - Properties    
+check number of rows that are read   
+An index improves query speed.    
+CREATE INDEX idx_orderid    
+ON EmpSalary1(salary);    
+EXEC sp_helpindex 'EmpSalary1';     
+
+
+### JOINS
+1. INNER JOIN   
+👉 Returns only matching rows    
+
+2. LEFT JOIN (LEFT OUTER JOIN)   
+✔ All rows from LEFT table   
+✔ Matching from RIGHT   
+✔ Non-matching → NULL
+
+3. RIGHT JOIN   
+✔ All rows from RIGHT table   
+✔ Matching from LEFT    
+✔ Non-matching → NULL
+
+FULL OUTER JOIN  
+👉 Combines LEFT + RIGHT   
+✔ All rows from both tables   
+✔ Non-matching → NULL   
+
+
+### DATA DEDUPLICATION
+remove duplicates using-
+row_number   
+having count(*)>1   
+select DISTINCT   
+Intermediate Table (CTAS Pattern)- 
+For massive tables, performing an "in-place" delete can be slow and lock the table.   
+Instead, use the Create Table As Select (CTAS) pattern:Create a new table with unique rows using DISTINCT or ROW_NUMBER().    
+Drop the original table.Rename the new table to the original name.   
+
+
+
+### What are LAG and LEAD?
+These are window functions   
+👉 LAG() → gets value from previous row   
+👉 LEAD() → gets value from next row    
+
+SELECT   
+    Date,   
+    Sales,   
+    LAG(Sales) OVER (ORDER BY Date) AS Previous_Day_Sales    
+FROM Sales;    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
