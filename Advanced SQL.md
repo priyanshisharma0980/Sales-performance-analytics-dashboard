@@ -179,7 +179,7 @@ in sql server - got o sql server agents - jobs - new jobs
 
 
 
-
+### B. COUNT(*) counts all rows including NULLs, while COUNT(column_name) only counts non-NULL values in that column.  
 
 
 
