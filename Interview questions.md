@@ -1,6 +1,20 @@
 ### what is partitioning and indexing and clustering   
 ### On which column partitioningis done - DATE column   
 ### What is output of left and inner join on these 2 tables   
+
+### order for sql query execution
+
+FROM / JOIN  
+WHERE   
+GROUP BY    
+HAVING    
+WINDOW FUNCTIONS    
+SELECT    
+DISTINCT
+ORDER BY
+LIMIT / OFFSET    
+
+
 ### How would you calculate a "Running Total" of revenue ordered by date?   
 SUM(revenue) OVER(ORDER BY date)   
 
@@ -45,8 +59,12 @@ LEFT JOIN Departments d
     AND d.department_name = 'Accounting';   
 
 
+### difference between where and having clause in sql
+The core difference between WHERE and HAVING in SQL is the stage at which they filter data: WHERE filters individual rows before data is grouped or aggregated,    while HAVING filters the summarized groups after a GROUP BY clause is applied.   
 
 
+
+ 
 
 
     
