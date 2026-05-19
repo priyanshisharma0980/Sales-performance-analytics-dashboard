@@ -63,11 +63,29 @@ LEFT JOIN Departments d
 The core difference between WHERE and HAVING in SQL is the stage at which they filter data: WHERE filters individual rows before data is grouped or aggregated,    while HAVING filters the summarized groups after a GROUP BY clause is applied.   
 
 
-
+### Difference between DELETE, TRUNCATE, DROP
+DELETE removes specific rows from a table using a condition, used with where         
+TRUNCATE empties all rows while preserving the table structure,       
+DROP completely deletes the entire table structure along with its data from the database.    
  
+FASTEST - Truncate then drop then delete    
+
+### JOINS - 6 types
+INNER JOIN- Returns only the records that have matching values in both tables.   
+LEFT JOIN- Returns all records from the left table and the matched records from the right table.    
+RIGHT JOIN- Returns all records from the right table and the matched records from the left table.     
+FULL JOIN- Returns all records when there is a match in either the left or the right table.    
+CROSS JOIN- Returns the Cartesian product of the two tables (every possible combination of rows).    
+SELF JOIN - A regular join, but the table is joined with itself.
+Self join eg - In same table you need to find respective manager for each employee   
+select * from table AS t1 join table AS t2 ON t1.emp_id = t2.manager_id     
 
 
-    
+### Group by
+The SQL GROUP BY clause arranges identical data into groups, allowing you to perform calculations on each group using aggregate functions like COUNT(), SUM(),     AVG(), MAX(), or MIN().    
+
+
+
 
 
 
