@@ -15,6 +15,16 @@ ORDER BY
 LIMIT / OFFSET    
 
 
+### Writing order of sql query
+SELECT    
+FROM   
+JOIN   
+WHERE   
+GROUP BY         
+HAVING   
+ORDER BY   
+LIMIT    
+
 ### How would you calculate a "Running Total" of revenue ordered by date?   
 SUM(revenue) OVER(ORDER BY date)   
 
@@ -62,6 +72,9 @@ LEFT JOIN Departments d
 ### difference between where and having clause in sql
 The core difference between WHERE and HAVING in SQL is the stage at which they filter data: WHERE filters individual rows before data is grouped or aggregated,    while HAVING filters the summarized groups after a GROUP BY clause is applied.   
 
+### WHERE clause NO AGGREGATION
+Columns from the original table can be used in WHERE, but newly calculated expressions or aliases cannot.   
+Because WHERE runs at Step 3 and SELECT runs at Step 6, the WHERE clause has no idea that your SELECT aliases even exist yet.    
 
 ### Difference between DELETE, TRUNCATE, DROP
 DELETE removes specific rows from a table using a condition, used with where         
@@ -83,6 +96,86 @@ select * from table AS t1 join table AS t2 ON t1.emp_id = t2.manager_id
 
 ### Group by
 The SQL GROUP BY clause arranges identical data into groups, allowing you to perform calculations on each group using aggregate functions like COUNT(), SUM(),     AVG(), MAX(), or MIN().    
+
+
+### if you use the ORDER BY clause on a numeric column but do not specify ASC or DESC, what is the default behavior?
+In ASC order    
+
+### can you use alias in the ORDER BY clause?
+Yes, as order by is after select    
+
+### NULLs in order by
+SQL treates it as lowest possible value    
+
+### To sort a non-numerical column by a specific custom order (like First, Second, Third or Low, Medium, High)   
+alphabetical sorting (ASC or DESC) will not work     
+
+ORDER BY FIELD(shift_priority, 'First', 'Second', 'Third');    
+OR   
+ORDER BY CASE shift_priority   
+    WHEN 'First'  THEN 1   
+    WHEN 'Second' THEN 2    
+    WHEN 'Third'  THEN 3   
+    ELSE 4 -- Handles any unexpected values or NULLs           
+END ASC;       
+
+
+### CONCAT() - In standard SQL (like SQL Server), if even one column in the concatenation is NULL, the entire result becomes NULL.
+
+### COALESCE with concat (when dealing with NULL)  
+When used for concatenation, COALESCE(column_name, '') ensures that if a column is missing data (NULL), it gets replaced on the fly     
+with an empty string ('') so it does not destroy your combined text.      
+
+SELECT       
+    first_name + ' ' + COALESCE(middle_name, '') + ' ' + last_name AS full_name     
+FROM users;   
+
+
+### SQL string indexing starts at 1, not 0
+
+### Substring
+SELECT SUBSTRING('SQL Tutorial', 1, 3);    
+-- Output: 'SQL'    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
