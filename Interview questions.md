@@ -137,6 +137,12 @@ FROM users;
 SELECT SUBSTRING('SQL Tutorial', 1, 3);    
 -- Output: 'SQL'    
 
+### What value is returned by a CASE statement if none of the WHEN conditions are met and no ELSE clause is provided?   
+NULL
+
+### In CASE WHEN if multiple values match what it returns
+The first matched value vvv
+
 
 
 
