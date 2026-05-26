@@ -144,6 +144,22 @@ NULL
 The first matched value vvv
 
 
+### 2nd highest salary
+SELECT MAX(salary) AS SecondHighestSalary   
+FROM Employee   
+WHERE salary < (SELECT MAX(salary) FROM Employee);    
+
+USING CTEs
+
+SELECT salary    
+FROM (    
+    SELECT salary, DENSE_RANK() OVER (ORDER BY salary DESC) AS rnk   
+    FROM Employee   
+) AS ranked_salaries   
+WHERE rnk = 2;    
+
+
+
 
 
 
