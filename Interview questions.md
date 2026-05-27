@@ -158,6 +158,47 @@ FROM (
 ) AS ranked_salaries   
 WHERE rnk = 2;    
 
+### Duplicate 
+
+SELECT order_id, COUNT(order_id) AS duplicate_count   
+FROM sales_orders   
+GROUP BY order_id   
+HAVING COUNT(order_id) > 1    
+
+OR    
+
+WITH CTE AS    
+(   
+SELECT *,   
+ROW_NUMBER() OVER(PARTITION BY order_id ORDER BY order_date) AS rn    
+FROM sales_orders   
+)   
+DELETE FROM CTE   
+WHERE rn > 1   
+
+(partition by comes first, then order by in row_number function)    
+
+### Query Optimisation
+
+I will select only the columns required, not do select *    
+Will give indexes to date and identity column    
+Use partition   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
