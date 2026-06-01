@@ -1,5 +1,24 @@
 ### what is partitioning and indexing and clustering   
-### On which column partitioningis done - DATE column   
+Partitioning involves physically splitting a large table into smaller, independent,     
+more manageable pieces called partitions, based on a specific "partition key" column.     
+Parition key - date/time column   
+
+A clustered index changes the physical order of data in the table.     
+Most databases make the Primary Key a clustered index automatically.     
+
+
+
+
+### timestamp 
+is a data type used to store both date and time information simultaneously   
+
+### difference between timestamp and datetime
+timestamp - for UTC time conversions, used in auditing logs    
+datetime - for local session timezone
+
+### On which column partitioningis done - 
+DATE column    
+
 ### What is output of left and inner join on these 2 tables   
 
 ### order for sql query execution
