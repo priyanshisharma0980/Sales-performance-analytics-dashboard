@@ -75,6 +75,47 @@ Member
 Contributor   
 Viewer    
 
+### Cardinaltiy
+Relationships - 1 to many, 1-1, many to many    
+Less unique values - less unique values   
+Lower cardinality more optimisation     
+Cardinality for optimisation -     
+Low cardinality is the foundation of Power BI performance optimization. Keeping cardinality low allows Power BI's underlying engine   to compress data incredibly well, reducing the file size and accelerating report interactions   
+
+
+### ALL()
+Used inside caluclate, used to bypass filters and slicers    
+Grand Total Sales =     
+CALCULATE(     
+    [Total Sales],     
+    ALL(Products) // Clears all filters applied to the Products table     
+)    
+
+
+### datesinperiod
+DATESINPERIOD(<dates>, <start_date>, <number_of_intervals>, <interval>)     
+
+3 months sales-   
+Last 3 Months Sales =     
+CALCULATE (   
+    [Total Sales],    
+    DATESINPERIOD (    
+        'Date'[Date],    
+        MAX ( 'Date'[Date] ),    
+        -3,   
+        MONTH   
+    )    
+)    
+
+### count(*)
+COUNT(*) counts all rows     
+COUNT(column_name) ignores NULL values    
+
+
+
+
+
+
 
 
 
