@@ -48,6 +48,66 @@ in Power BI is a powerful DAX mechanism where an active row context (evaluating 
 equivalent filter context (applying those row values as filters to your data model)     
 Can be achieved using - Placing CALCULATE function inside a row context.
 
+### SELECTEDVALUE(Product[ProductName]) 
+returns a value only when exactly one product is selected. If two products are selected, it returns BLANK() unless an alternate     result is provided.     
+SELECTEDVALUE( ColumnName, [AlternateResult] )     
+Eg- Dynamic Titles: Change a chart title based on a user's slicer selection.     
+Eg- Selected Year Title = SELECTEDVALUE('Date'[Year], "All Years Selected")     
+Result A (if 2026 is selected in the slicer): "2026"     
+Result B (if nothing or multiple years are selected): "All Years Selected"     
+
+
+### Power BI Premium Per User (PPU), the maximum dataset size is 100 GB    
+### Power BI Premium, the maximum dataset size is 10 GB     
+### Power BI Pro: Maximum of 1 GB per dataset.     
+
+### Row-Level Security (RLS) does in Power BI. 
+It restricts which rows of data each user can see.     
+Go to the Modeling tab and select Manage roles.    
+Static RLS: Hardcoded rules (e.g., [Country] = "Germany").     
+Dynamic RLS: Uses DAX functions like USERPRINCIPALNAME() to automatically filter data based on the logged-in user's email.     
+RLS only applies to users with Viewer permissions.        
+[EmployeeEmail] = USERPRINCIPALNAME()    
+
+### 4 types of users-
+Admin     
+Member   
+Contributor   
+Viewer    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 
 
