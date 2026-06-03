@@ -44,7 +44,9 @@ When you create a Calculated Column, Power BI automatically creates a row contex
 Used with iterator functions - SUMX, AVERAGEX, MAXX    
 
 ### Context transition 
-in Power BI is a powerful DAX mechanism where an active row context (evaluating data row-by-row) is converted into an    
+When you use the CALCULATE function inside a calculated column, it triggers a context transition. This automatically    
+transforms the row context into a filter context.    
+in Power BI is a powerful DAX mechanism where an active row context (evaluating data row-by-row) is converted into an     
 equivalent filter context (applying those row values as filters to your data model)     
 Can be achieved using - Placing CALCULATE function inside a row context.
 
@@ -111,7 +113,14 @@ CALCULATE (
 COUNT(*) counts all rows     
 COUNT(column_name) ignores NULL values    
 
+### Merge and Append
+Merge adds columns horizontally by matching rows based on a unique identifier,      
+while Append adds rows vertically by stacking datasets with identical or similar column structures    
+APPEND - Similar or identical schema / column headers    
+MERGE- A matching "key" column in both tables    
 
+### ALLEXCEPT: 
+If your table has a Primary Key / Unique ID column, use ALLEXCEPT to strip out all filters except for that unique identifier.    
 
 
 
