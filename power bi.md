@@ -16,6 +16,9 @@ Improved inventory planning
 Reduced reporting turnaround time   
 Improved quarterly sales efficiency by 12%     
 
+### CAlculated table/ Calculated column/ measure
+dimdate= calendar(startdate, enddate)   - this will create calculated table     
+calculated column -  a new column that you add to an existing table and it is calculated row by row   
 
 
 ### CALCULATE
