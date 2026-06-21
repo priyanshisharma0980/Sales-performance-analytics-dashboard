@@ -1,7 +1,66 @@
 ### Objective SQL power BI
 Developed an enterprise-level Sales Analytics Dashboard to monitor business KPIs, regional sales performance, profitability trends, customer behavior,   
 and operational efficiency across multiple business units.   
-The dashboard analyzed ₹30Cr+ revenue data and supported management reporting and strategic decision-making.     
+The dashboard analyzed ₹30Cr+ revenue data and supported management reporting and strategic decision-making. 
+
+## POWER BI
+
+### Revenue Growth =   
+DIVIDE(  
+    [Current Revenue] - [Previous Revenue],   
+    [Previous Revenue]    
+)    
+
+### YTD 
+YTD Revenue =  
+TOTALYTD(  
+    [Total Revenue],  
+    DimDate[Date]  
+)  
+
+### YoY %
+Revenue Last Year =    
+CALCULATE(  
+    [Total Revenue],  
+    SAMEPERIODLASTYEAR(DimDate[Date])   
+)  
+This will create a new measure table column for revenue last year    
+
+
+### YoY Growth % =  
+DIVIDE(  
+    [Total Revenue] - [Revenue Last Year],   
+    [Revenue Last Year]  
+)  
+(to calculate revenue last year
+
+
+### TOP N - 
+rankx() - used for Ranking items based on a measure, such as total sales, allowing for easy identification of top and bottom performers.   
+Product Rank =  
+RANKX(  
+    ALL(DimProduct[ProductName]),   
+    [Total Revenue],  
+    ,  
+    DESC   
+)  
+
+used with ALL - ALL product names, based on total_revenue   
+Then applied filter → Top 10 products.   
+
+### CHARTS
+Line charts show trends over time clearly.  
+Bar charts allow easy comparison between categories. Eg- Revenue by region and Revenue by product   
+Pie chart Shows percentage contribution. Eg- Revenue share by product category   
+
+
+### Roles in Power BI Services
+Admin	        full control  
+Member	      edit reports  
+Contributor	  publish reports  
+Viewer	      view dashboards  
+
+
 
 ### Revenue Growth % =   
 DIVIDE(   
