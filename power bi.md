@@ -78,13 +78,31 @@ DESC
 Top 10 Products =    
 IF([Product Rank] <= 10, [Total Revenue])     
 
-### DRILL DOWN
+### DRILL DOWN and Hirerchy
+First right click on column year and create hirearchy, then go to month column and add to hirearchy   
+then we can use the button of drill up and drill down in the visual    
+
+lets you move from high-level summary data to more specific, detailed data within a single chart or visual.    
+
 when we add, eg - product and store in x axis    
 y axis will be price     
 legend - store    
 we want in x axis to show details for each product under each store     
 we are using the bar chart there is a down arrow, click on it, it is drill down    
 if I click on each store then it will show for each product under each store    
+
+### Bookmark
+Bookmarks in Power BI are used to take a "snapshot" of a report page at a specific moment.    
+They save the exact state of your report, including active filters, slicers, visual visibility, and sort order.     
+FORMAT - Actions - dropdown select Bookmark   
+and give destination   
+
+In bookmark, keep one visual over top of another    
+Go to bookmark tab - select add+ 
+name - line chart (the upper visual)   
+Now hide it and select below visual and add Bookmark    
+
+
 
 ### Query folding
 Process of pushing data transformation steps back to data source    
