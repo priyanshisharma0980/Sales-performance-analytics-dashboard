@@ -78,6 +78,83 @@ DESC
 Top 10 Products =    
 IF([Product Rank] <= 10, [Total Revenue])     
 
+### DRILL DOWN
+when we add, eg - product and store in x axis    
+y axis will be price     
+legend - store    
+we want in x axis to show details for each product under each store     
+we are using the bar chart there is a down arrow, click on it, it is drill down    
+if I click on each store then it will show for each product under each store    
+
+### Query folding
+Process of pushing data transformation steps back to data source    
+used while implementing increamental refresh    
+supported for - removing, renaming, numeric calculations, joins etc    
+Does not support - customer columns, merging, appending from different tables    
+Does not support - csv, excel files    
+
+in M language - value.nativequery(tablename, select * from table,[enablefolding=True])    
+
+### Row level security
+Modelling - manage roles - give roles eg- country - then select table, right click on add filter    
+in power BI services - Data set - 3 dots - security - enter IDs    
+
+Dynamic RSL    
+create a measure -    
+username = userprincipalname()    
+shared the email of accounts that have logged in    
+now got ot manage roles and in value add filter - use email and value = username (this is the measure we just created)    
+
+### Incremental refresh
+In power BI desktop go to table, then right click - Incremental refresh    
+In power query we need to set up parameters - Power query - New parameters    
+rangestart and rangeend    
+Type - date/time    
+current value = give a date    
+-- in your table you go to that table in power query and search for date column then right click    
+-- filter date/time - custom filter - equals - now select parameter - and the parameter name    
+In model view, select the table right click - incremental refresh    
+select the data and the time    
+
+### Forecast
+Line chart - then right click - Forecast    
+we can go in format table and then format the forcast line colour    
+
+### RUNNING TOTAL
+Running Total =    
+CALCULATE (   
+[Total Sales],    
+FILTER (   
+ALLSELECTED ( 'Date' ),    
+'Date'[Date] <= MAX ( 'Date'[Date] )    
+)    
+)    
+
+OR    
+right click thable - new quick measure- running total     
+base value - numerical    
+
+### ALL and ALLSELECTED
+in Power BI remove filters to calculate totals, typically for percentages.     
+Use ALL to ignore all filters (e.g., grand total of all time/regions). Use ALLSELECTED to ignore    
+only filters inside the visual but respect external filters like slicers (e.g., total of only the selected year).    
+
+### SENTIMENT ANALYSIS    
+Only in oremium capacity    
+In power query (only in power BI services) go to HOME- Text analytics    
+Sentiment score - summary - Okay    
+Sentiment Category =    
+SWITCH(   
+TRUE(),    
+'YourTable'[Sentiment Score] >= 0.7, "Good",    
+'YourTable'[Sentiment Score] >= 0.4, "Neutral",    
+"Bad"    
+)    
+
+### Row context and Filter context
+row context - based on each row dax calculations     
+filter context - based on slicer filtering    
+
 ### CHARTS
 Line charts show trends over time clearly.  
 Bar charts allow easy comparison between categories. Eg- Revenue by region and Revenue by product   
