@@ -36,17 +36,47 @@ DIVIDE(
 
 
 ### TOP N - 
-rankx() - used for Ranking items based on a measure, such as total sales, allowing for easy identification of top and bottom performers.   
-Product Rank =  
-RANKX(  
-    ALL(DimProduct[ProductName]),   
-    [Total Revenue],  
-    ,  
-    DESC   
-)  
+rankx() - used for Ranking items based on a measure, such as total sales, allowing for easy identification of top and     
+bottom  performers.      
+Product Rank =    
+RANKX(    
+    ALL(DimProduct[ProductName]),      
+    [Total Revenue],    
+    ,    
+    DESC      
+)    
 
-used with ALL - ALL product names, based on total_revenue   
-Then applied filter → Top 10 products.   
+used with ALL - ALL product names, based on total_revenue     
+Then applied filter → Top 10 products.     
+
+### DAX used    
+Total Revenue = SUM(FactSales[Revenue])    
+
+Profit = Revenue - Cost (calculated in sql)   
+Total Profit =    
+SUM(FactSales[Profit])    
+
+Profit Margin =    
+DIVIDE([Total Profit], [Total Revenue], 0)    
+
+Total Orders = COUNT(FactSales[OrderID])    
+
+Average Order Value = DIVIDE([Total Revenue], [Total Orders], 0)    
+
+Revenue by Region = SUM(FactSales[Revenue])    
+
+TOP N - Finding the top performing items based on a metric.    
+Examples in your project: Top 10 products with highest revenue   
+Product Rank =    
+RANKX(    
+ALL(DimProduct[ProductName]),    
+[Total Revenue],    
+,    
+DESC    
+)    
+ 
+Top 10 Products =    
+IF([Product Rank] <= 10, [Total Revenue])     
 
 ### CHARTS
 Line charts show trends over time clearly.  
