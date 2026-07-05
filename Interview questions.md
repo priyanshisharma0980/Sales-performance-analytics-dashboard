@@ -204,6 +204,9 @@ Will give indexes to date and identity column
 Use partition   
 
 
+### If SQL was used for data cleaning why was power query in power BI used?
+SQL Server for pushing heavy transformations and using Power Query only for report-specific transformations.      
+
 
 
 
