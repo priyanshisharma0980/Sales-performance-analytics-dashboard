@@ -91,6 +91,14 @@ Enable:
 ✅ Refresh data when opening the file   
 
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------        
+
+### KPI
+Survey Response % = (Number of Completed Surveys)/(Number of Surveys Sent) × 100       
+Survey = "Completed"   =COUNTIF(StatusColumn,"Completed")       
+CSAT/ DSAT =IF(H2>=9,"Promoter", IF(H2>=7,"Passive","Detractor"))    =COUNTIF(CategoryColumn,"Passive")         
+
+
 
 
 
