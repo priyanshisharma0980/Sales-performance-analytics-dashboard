@@ -93,10 +93,36 @@ Enable:
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------        
 
+### Objective
+The objective was to build a reliable, automated reporting solution that could become the single source of truth for Cisco's Customer Support Operations.     
+
+
 ### KPI
 Survey Response % = (Number of Completed Surveys)/(Number of Surveys Sent) × 100       
 Survey = "Completed"   =COUNTIF(StatusColumn,"Completed")       
 CSAT/ DSAT =IF(H2>=9,"Promoter", IF(H2>=7,"Passive","Detractor"))    =COUNTIF(CategoryColumn,"Passive")         
+
+
+### Why did you use pivot table-
+we used Pivot Tables because they summarize millions of combinations instantly without changing the underlying data.     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
