@@ -1,3 +1,10 @@
+### Project
+
+The business problem was that stakeholders wanted to understand why sales efficiency and profitability were not improving consistently across different regions    and product groups. I extracted and validated 500K+ sales records using SQL Server and then compared revenue, profit margin, sales growth, regional performance    and product-level performance across different business segments.      
+
+When I compared the product groups and regions, I found that overall revenue was being driven by a few high-performing segments, while some regions and product    categories had lower margins and weaker sales efficiency despite contributing to overall sales volume. I used DAX measures for revenue growth, profit margin,     regional performance, and Top-N analysis to isolate these patterns.      
+
+
 ### OBJECTIVE
 To analyze sales data and build an interactive Power BI dashboard that helps stakeholders monitor revenue, profit,   
 and sales performance across products, regions, and time periods for better data-driven decision making.  
