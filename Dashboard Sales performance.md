@@ -144,10 +144,31 @@ GROUP BY OrderID
 HAVING COUNT(*) > 1;   
 
 
+### Where VS Having
+Where filters data first, having groups by data first then filters      
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------     
 
 ## POWER BI
+
+### Dateadd vs datesinperiod
+DATESINPERIOD = Gives a continuous period of dates between start and end date     
+DATESINPERIOD(Date[Date], MAX(Date[Date]),-12, MONTH)            
+Gives date back in time but in a range     
+You want sales from the last 12 months, not just December.      
+Used for 3 month rolling sales            
+        
+Date add moves to previous dates - DATEADD(Sales[Date], -1, Year)      
+want sales for the previous Year
+Previous Day Sales = CALCULATE(       
+    SUM(Sales[Sales]),      
+    DATEADD(Sales[Date], -1, DAY))        
+
+DATEADD is same as SAMEPERIODLASTYEAR but more flexible       
+SAMEPERIODLASTYEAR(DimDate[Date])        
+
+
+
 
 ### Revenue Growth =   
 DIVIDE(  
