@@ -46,7 +46,7 @@ if we want the data pass the key series1[[1,2,3]]
 ### loc and iloc
 loc - used to retrieve data based on rows and columns   
 iloc - used to retrieve data based on rows and columns based on INDEX   (columns as index)    
-
+Uses 0-based integer positions.     
 head and tail() - default display value is 5   
 
 ### df.dtypes - returns datatype of each columns    
