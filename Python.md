@@ -1,6 +1,8 @@
 ### Array is of same datatype
-List - Mutable   
-Tuple - Immutable   
+List - Mutable , starts with [],  list is technically heterogeneous         
+Tuple - Immutable  ()  list is technically heterogeneous too        
+Dictonary- {} - key value pairs - Mutable       
+
 
 Numpy is better than list for numerical calculations   
 x = np.array(list1)
@@ -17,6 +19,9 @@ arr1.reshape(2,5)
 FLATTEN/ ravel       
 np.ndarray.flatten(arr2d)    
 np.ravel(arr2d)   
+
+
+### how to handle missing values
 
 ### Concat 2d array  
 axis 0 = Rows
