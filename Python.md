@@ -4,25 +4,78 @@ Tuple - Immutable  ()  list is technically heterogeneous too
 Dictonary- {} - key value pairs - Mutable       
 
 
-Numpy is better than list for numerical calculations   
-x = np.array(list1)
-type(x) - to check the type it will give numpy.ndarray    
+### df.describe() 
+Generate summary statistics to help you quickly understand the distribution, central tendency, and dispersion of your dataset.    
+has count, mean, mode, median
 
-x.shape(x) OR np.shape(x)     
-Reverse an array arr1[::-1]    
-For Slicing 2 D array  -  
-arr2d[1:,2:]   
+### df.shape
+Used to calculate number of rows and columns        
 
-Reshape   
-arr1.reshape(2,5)    
+### df.size -
+The total number of cells (rows × columns)       
 
-FLATTEN/ ravel       
-np.ndarray.flatten(arr2d)    
-np.ravel(arr2d)   
-
+### df.info() 
+method provides a concise summary of the DataFrame, including the column names, data types, and the number of non-null values in each column         
 
 ### how to handle missing values
+df.dropna()         
+Drop rows only if missing values are in specific columns         
+df_cleaned_subset = df.dropna(subset=['Age', 'Salary'])        
 
+Count missing values in each column -  print(df.isna().sum())            
+
+Fill missing numeric values with the column mean-          
+df['Age'] = df['Age'].fillna(df['Age'].mean())       
+
+Forward fill (propagates the last valid value forward)      
+df_filled = df.fillna(method='ffill')          
+
+Linear Interpolation (estimates intermediate points based on data trends)          
+df['Temperature'] = df['Temperature'].interpolate(method='linear')             
+
+
+
+### LAMBDA function
+lambda function is a small, anonymous function that is defined without a name using the lambda keyword.          
+lambda arguments: expression          
+lambda x: x * 2           
+
+Eg- Clean text: Capitalize all names          
+df['Name'] = df['Name'].apply(lambda x: x.capitalize())       
+
+### Merge
+Joining 2 tables based on common column     
+df.merge() - innerjoin    
+merged_df = df1.merge(df2, on='Emp_ID', how='inner')        
+df.concat- outer join      
+df.join - left join        
+
+
+### Generators and decorators
+generators handle memory-efficient data streaming, while decorators modify or extend the behavior of code without changing its source.     
+They use the yield keyword      
+Generator-  Processes data streams one item at a time without filling up RAM.
+
+A decorator is a function that takes another function as an argument, adds some functionality to it, and returns a modified version of it        
+
+
+### MATPLOTLIB and Seaborn
+Line Plot: plt.plot() — Connects data points with lines.     
+Scatter Plot: plt.scatter() — Plots individual data points to look for relationships.       
+Vertical Bar Chart: plt.bar() — Displays rectangular bars for categorical comparisons.     
+Horizontal Bar Chart: plt.barh()        
+plt.hist() — Bins data to show distribution frequencies.     
+2D Histogram: plt.hist2d() — A binning frequency plot for two variables.     
+Box and Whisker Plot: plt.boxplot() — Shows median, quartiles, and outliers.      
+Violin Plot: plt.violinplot() — Displays the combination of a boxplot and a kernel density layout.      
+Pie Chart: plt.pie()          
+
+
+### Overfitting
+occurs when a model learns the training data including its random noise and outliers, causing it to perform poorly on new, unseen data.          
+Instead of recognizing the broad underlying pattern, the model essentially "memorizes" the specific dataset.       
+
+     
 ### Concat 2d array  
 axis 0 = Rows
 axis 1 = columns
@@ -171,7 +224,21 @@ intercept + slope * column
 
 
 
+Numpy is better than list for numerical calculations   
+x = np.array(list1)
+type(x) - to check the type it will give numpy.ndarray    
 
+x.shape(x) OR np.shape(x)     
+Reverse an array arr1[::-1]    
+For Slicing 2 D array  -  
+arr2d[1:,2:]   
+
+Reshape   
+arr1.reshape(2,5)    
+
+FLATTEN/ ravel       
+np.ndarray.flatten(arr2d)    
+np.ravel(arr2d)   
 
 
 
