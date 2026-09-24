@@ -1,3 +1,14 @@
+### How to get data from Sharepoint
+Login into sharepoint - go to folder       
+select file- 3 dotes - open in app      
+This will open the file in excel - file- copy path - copy that path     
+Go to power bi - Click get data - Web (not sharepoint)     
+now paste link and remove ?web=1 from end       
+
+For sharepoint list - open that list - select the URL and remove last part - keep only root url - then add data- sharepoint list         
+
+
+
 ### what is partitioning and indexing and clustering   
 Partitioning involves physically splitting a large table into smaller, independent,     
 more manageable pieces called partitions, based on a specific "partition key" column.     
