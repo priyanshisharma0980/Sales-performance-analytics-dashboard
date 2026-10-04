@@ -1,3 +1,29 @@
+## ADF - used for ETL, data integration and data movement    
+Used to create and schedule data driven pipelines
+
+"ADF was the orchestration layer."    
+
+I used Azure Data Factory as the orchestration layer to automate the extraction and movement of data from multiple sources into SQL Server.      
+I created pipelines with activities for ingestion, staging, validation and transformation, and then used SQL Server for the relational transformations       
+and analytical data model that was consumed by Power BI.     
+
+
+### Pipeline- 
+### Dataset-
+
+### Activity - 3 types    
+Data movement     
+Data tranformation     
+Control flow      
+
+Integration runtimes
+### Linked services - The Linked Service contains connection information/authentication.     
+A linked service in Azure Data Factory acts like a connection string that defines how the data factory connects to external data stores      
+
+
+
+
+### Create resource group    
 ### Create storage account  
 ### Create container   
 ### Inside container we need to create 2 folders (add directory)   
@@ -7,6 +33,8 @@
 ### Go to authour click pipeline   
 ### gaive name to pipeline - data ingestion  
 ### Now under Activities select - copy  
+Copy data- to read data from one location in blob storage to another    
+N
 ### Now select data that you want to upload as raw_data (go to github, because we have data there, select file, click raw, select URL)   
 ### Go to the pipeline (select source - click + - search HTTP + select csv - now paste the link from github)    
 ### create linked service - in URL give the raw URL - Okay - Now select the option use first row as header   
@@ -21,12 +49,27 @@
 
 
 
+### Create resource group    
+### Create storage account  
+### Create container   
+### Inside container we need to create 2 folders (add directory)   
+### Raw data and transformed data    
 
+### Now go to Azure data factory   
+### Go to authour click pipeline   
+### gaive name to pipeline - data ingestion  
+### Now under Activities select - copy  
+Copy data- to read data from one location in blob storage to another  
+### LINKED SERVICE
+click LINKED SERVICE - new- search for blob storage - enter details - test connection   
+Linked service for Destination - new - search for Azure SQL database - enter details - connect
 
+### DATASET
+Go to author - Dataset - Select Bolob storage - select format of data present in blob (eg- csv) - connect to Linked service - select path     
+Go to author - Dataset - Select Azure SQL Database - select the table - connect to Linked service - select path     
 
-
-
-
+### PIPELINE
+Now Authour - Pipeline - Copy - then there is source and sink - select source - select destination i n sink - DEBUG (to run)       
 
 
 
