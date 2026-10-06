@@ -8,9 +8,18 @@ I created pipelines with activities for ingestion, staging, validation and trans
 and analytical data model that was consumed by Power BI.     
 
 
-### Pipeline- 
-### Dataset-
-
+Azure           
+└── Storage Account       
+      └── Container       
+            └── sales.csv      
+### Trigger
+Used to execute pipeline     
+Triggers and pipelines have many to many relationship (excepth tumbling window trigger)       
+3 types
+Scheduled trigger- Invokes a pipeline on a scheduled time     
+Tumbling window trigger- A trigger that operates on perodic intervals     
+(Incremental load - loading only new/changed data)   
+Event based trigger- A trigger that responds to an event     
 ### Activity - 3 types    
 Data movement     
 Data tranformation     
@@ -19,35 +28,6 @@ Control flow
 Integration runtimes
 ### Linked services - The Linked Service contains connection information/authentication.     
 A linked service in Azure Data Factory acts like a connection string that defines how the data factory connects to external data stores      
-
-
-
-
-### Create resource group    
-### Create storage account  
-### Create container   
-### Inside container we need to create 2 folders (add directory)   
-### Raw data and transformed data    
-
-### Now go to Azure data factory   
-### Go to authour click pipeline   
-### gaive name to pipeline - data ingestion  
-### Now under Activities select - copy  
-Copy data- to read data from one location in blob storage to another    
-N
-### Now select data that you want to upload as raw_data (go to github, because we have data there, select file, click raw, select URL)   
-### Go to the pipeline (select source - click + - search HTTP + select csv - now paste the link from github)    
-### create linked service - in URL give the raw URL - Okay - Now select the option use first row as header   
-### now go to sink - select new - Azure data lake gen 2 - now create new linked service and select storage account - Oaky   
-### Now select the file path - select raw folder   
-### click on validate   
-### now click debug  
-### now search for storage account - under it you will see the folder
-
-
-
-
-
 
 ### Create resource group    
 ### Create storage account  
@@ -73,6 +53,7 @@ Now Authour - Pipeline - Copy - then there is source and sink - select source - 
 
 
 
+Self-hosted Integration Runtime (SHIR)     
 
 
 
@@ -80,7 +61,26 @@ Now Authour - Pipeline - Copy - then there is source and sink - select source - 
 
 
 
+### Create resource group    
+### Create storage account  
+### Create container   
+### Inside container we need to create 2 folders (add directory)   
+### Raw data and transformed data    
 
+### Now go to Azure data factory   
+### Go to authour click pipeline   
+### gaive name to pipeline - data ingestion  
+### Now under Activities select - copy  
+Copy data- to read data from one location in blob storage to another    
+N
+### Now select data that you want to upload as raw_data (go to github, because we have data there, select file, click raw, select URL)   
+### Go to the pipeline (select source - click + - search HTTP + select csv - now paste the link from github)    
+### create linked service - in URL give the raw URL - Okay - Now select the option use first row as header   
+### now go to sink - select new - Azure data lake gen 2 - now create new linked service and select storage account - Oaky   
+### Now select the file path - select raw folder   
+### click on validate   
+### now click debug  
+### now search for storage account - under it you will see the folder
 
 
 
