@@ -68,11 +68,16 @@ df.join - left join
 
 ### Generators and decorators
 generators handle memory-efficient data streaming, while decorators modify or extend the behavior of code without changing its source.     
-They use the yield keyword      
 Generator-  Processes data streams one item at a time without filling up RAM.
+Uses the yield keyword to pause execution and save state.      
+Used in Processing large files, infinite data streams, and data pipelines.      
+When a generator yields a value, its execution state is paused and saved until the next value is requested.        
 
+Decorator- used to extend or alter the behavior of a function or class without permanently modifying its source code.       
 A decorator is a function that takes another function as an argument, adds some functionality to it, and returns a modified version of it        
-
+Logging, authentication, execution timing, and caching.      
+def my_decorator(func):        
+    def wrapper():       
 
 ### MATPLOTLIB and Seaborn
 Line Plot: plt.plot() — Connects data points with lines.     
