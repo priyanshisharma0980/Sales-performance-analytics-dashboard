@@ -1,6 +1,9 @@
 ### Array is of same datatype
-List - Mutable , starts with [],  list is technically heterogeneous         
-Tuple - Immutable  ()  list is technically heterogeneous too        
+List - Mutable , starts with [],  list is technically heterogeneous        
+When you modify a list, you change its contents directly. The location of the list in memory (its ID) remains exactly the same.      
+
+Tuple - Immutable  ()  Tuple is technically heterogeneous too        
+You can combine two tuples together     
 Dictonary- {} - key value pairs - Mutable       
 
 
@@ -9,10 +12,10 @@ Generate summary statistics to help you quickly understand the distribution, cen
 has count, mean, mode, median
 
 ### df.shape
-Used to calculate number of rows and columns        
+Used to calculate number of rows and columns (2 x 3)                
 
 ### df.size -
-The total number of cells (rows × columns)       
+The total number of cells (rows × columns= 6)             
 
 ### df.info() 
 method provides a concise summary of the DataFrame, including the column names, data types, and the number of non-null values in each column         
@@ -34,6 +37,18 @@ Linear Interpolation (estimates intermediate points based on data trends)
 df['Temperature'] = df['Temperature'].interpolate(method='linear')             
 
 
+### DUPLICATE
+To delete duplicate values from particular columns      
+df.drop_duplicates(subset=['Name', 'Age'])        
+
+print(df[df.duplicated()])      
+It extracts and displays the actual rows that are duplicates, hiding the unique ones.       
+
+df.drop_duplicates(inplace=True)      
+It permanently deletes the duplicate rows directly from your original variable df.       
+
+print(df.duplicated().sum())      
+It calculates and prints the exact total number of duplicate rows in the dataset.
 
 ### LAMBDA function
 lambda function is a small, anonymous function that is defined without a name using the lambda keyword.          
@@ -239,6 +254,82 @@ arr1.reshape(2,5)
 FLATTEN/ ravel       
 np.ndarray.flatten(arr2d)    
 np.ravel(arr2d)   
+
+
+
+
+### ML in Python project
+K-Means clustering → “Which customers are similar to each other?”  - Unsupervised Machine Learning           
+This is unsupervised learning because you don't have a pre-existing answer/label.              
+    
+Logistic Regression / Random Forest / XGBoost → “Will this customer perform a particular action?”      
+This is supervised learning because you give the model historical examples where the outcome is already known.        
+
+
+### What is RFM?
+R = Recency   How recently did the customer purchase?             
+F = Frequency  How often does the customer purchase?           
+M = Monetary   How much money has the customer spent?         
+
+### How do we calculate RFM in Python?
+df["Revenue"] = df["Quantity"] * df["UnitPrice"]      
+Then convert the date- df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"])         
+Now determine the analysis date - analysis_date = df["InvoiceDate"].max() + pd.Timedelta(days=1)  - "How many days has it been since this customer's last      purchase?"      
+
+Now calculate RFM-
+rfm = df.groupby("CustomerID").agg(          
+    Recency=("InvoiceDate",         
+             lambda x: (analysis_date - x.max()).days),       
+
+    Frequency=("InvoiceID", "nunique"),        
+
+    Monetary=("Revenue", "sum")        
+).reset_index()       
+
+After doing this we get a table with columns - Customerid, recency, frequency and monetary
+
+
+### Choosing K
+KMeans(n_clusters=4)      
+Two common approaches are:       
+1. Elbow Method         
+2. Silhouette Score
+If you increase K, inertia will almost always decrease.
+
+### What is K MEANS clustering
+K-Means is an unsupervised clustering algorithm that partitions data into K clusters by assigning observations to the nearest centroid and iteratively     updating the centroids to minimize within-cluster squared distances.         
+
+### How did you choose K?
+I evaluated multiple values of K using the Elbow Method and Silhouette Score, then considered cluster interpretability from a business perspective.         
+
+### What does inertia mean?
+Inertia measures how close the customers are to the centroid of their cluster.     
+Inertia is the sum of squared distances between observations and their assigned cluster centroids. Lower inertia indicates tighter clusters, although it      always tends to decrease as K increases.             
+
+### How you used K means clustering
+Engineered customer-level RFM features and applied K-Means clustering after feature scaling, using the Elbow Method and Silhouette Score to determine an         appropriate cluster count. Profiled resulting clusters based on Recency, Frequency, and Monetary behaviour to create actionable customer segments.    
+
+### Silhouette Score asks:
+"Are the customers within a cluster similar to each other and sufficiently different from customers in other clusters?"      
+### Elbow asks:
+How much does adding another cluster improve compactness?       
+
+
+### What to say for K means
+I used K-Means because the customer segments were not predefined. I wanted to discover natural groups based on customer behaviour rather than manually     defining the segments.      
+"K-Means identified four behavioural clusters, which I then profiled using average RFM values and mapped to business segments such as High-Value, Loyal,     Potential, and At-Risk."    
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
