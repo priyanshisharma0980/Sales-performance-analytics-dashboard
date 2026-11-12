@@ -147,6 +147,86 @@ HAVING COUNT(*) > 1;
 ### Where VS Having
 Where filters data first, having groups by data first then filters      
 
+
+
+### how we copy data from one table to another in sql server
+INSERT INTO TargetTable    
+SELECT * FROM SourceTable;      
+
+
+### Self join
+A self join in SQL is a regular join where a table is joined with itself to compare rows within that same table     
+Eg-  You can match employees to their managers when both are stored in the same employees table.     
+SELECT e.name AS employee, m.name AS manager       
+FROM employees e         
+LEFT JOIN employees m             
+  ON e.manager_id = m.employee_id;        
+
+### 2nd highest salary
+WITH RankedSalaries AS (      
+    SELECT       
+        salary,      
+        DENSE_RANK() OVER (ORDER BY salary DESC) AS salary_rank     
+    FROM Employee     
+)     
+SELECT DISTINCT salary AS SecondHighestSalary     
+FROM RankedSalaries     
+WHERE salary_rank = 2;      
+
+
+### Constraints in SQL
+SQL constraints are predefined rules enforced on table columns to restrict the type of data that can be stored in a database.       
+They are typically defined when creating a table with CREATE TABLE         
+NOT NULL    
+UNIQUE    
+PRIMARY KEY    
+FOREIGN KEY   
+
+
+### NORMALISATION and TYPES
+Normalization is the process of organizing and structuring data to eliminate redundancy, prevent data anomalies    
+normalization splits large, messy tables into smaller, related tables and links them using keys.      
+• First Normal Form (1NF):      
+	• Rule: Each table cell must contain a single (atomic) value, and there are no repeating groups or arrays.       
+• Second Normal Form (2NF):         
+	• Rule: Must be in 1NF, and all non-key attributes must be fully functionally dependent on the entire primary key (no partial dependencies on a    composite key).       
+• Third Normal Form (3NF):         
+	• Rule: Must be in 2NF, and there must be no transitive dependencies (non-key attributes should not depend on other non-key attributes).      
+• Boyce-Codd Normal Form (BCNF / 3.5NF):        
+	• Rule: A stricter version of 3NF. For every non-trivial functional dependency (X → Y), X must be a superkey.           
+• Fourth Normal Form (4NF):         
+	• Rule: Must be in BCNF and contain no non-trivial multi-valued dependencies.         
+• Fifth Normal Form (5NF):           
+	• Rule: Deals with join dependencies; a table can be decomposed into smaller tables and losslessly rejoined without anomalous data side effects.        
+
+
+### RDBMS
+An RDBMS (Relational Database Management System) is a software program used to store, manage, query, and retrieve structured data organized into     
+related tables of rows and columns     
+Uses SQL language    
+
+### DATABASE language
+Data Definition Language (DDL) - create, alter, drop, truncate     
+Data Manipulation Language (DML) - select, insert, update, delete, merge     
+Data Control Language (DCL) - Grant, revoke     
+Transaction Control Language (TCL) - commit, rollback      
+
+
+Data Query Language (DQL) - Retrieves and reads data from tables - select, from, where, order by, group by, having           
+
+
+### Aggregate functions 
+perform a calculation across a set of multiple rows and return a single summary value.     
+COUNT(), SUM(), AVG(), MIN(), and MAX()     
+
+
+### WHAT IF analysis
+to explore the impact of changes (like adding indexes, modifying statistics, or altering input variables) without permanently modifying the real     
+database state or risking production performance.      
+
+
+
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------     
 
 ## POWER BI
