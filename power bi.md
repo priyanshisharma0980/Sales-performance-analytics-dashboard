@@ -415,7 +415,29 @@ MERGE- A matching "key" column in both tables
 If your table has a Primary Key / Unique ID column, use ALLEXCEPT to strip out all filters except for that unique identifier.    
 
 
+### how to apply same colour coding in power bi to 2 different pbix files
+Export and Import a Report Theme       
+1. Export the theme as a JSON file:       
+	• Go to View > Themes dropdown > Save Current Theme.          
+	• Save the .json file to your computer.          
+2. Import the theme into the second .pbix file:               
+	• Open your second .pbix file.                 
+	• Go to View > Themes dropdown > Browse for Themes.
 
+
+
+### how to find MoM and YoY in power bi
+need a continuous Date Table marked as a Date Table and DAX measures using time intelligence functions     
+Prev Year Revenue = CALCULATE([Total Revenue], DATEADD('Date'[Date], -1, YEAR))      
+
+ total revenue for the exact same time period in the previous year.      
+ DATEADD function in DAX is used to shift a given set of dates forward or backward in time by a specified number of intervals.         
+
+
+ ### How to give access to power bi report outside your organisation domain
+ In power bi service - FILE - embed report - Publish to web      
+ 
+ 
 
 
 
