@@ -8,6 +8,23 @@ I presented these findings through a Power BI dashboard so stakeholders could dr
 To analyze sales data and build an interactive Power BI dashboard that helps stakeholders monitor revenue, profit,   
 and sales performance across products, regions, and time periods for better data-driven decision making.  
 The objective of the project was to build a Sales Performance Analytics Dashboard that allows business stakeholders to monitor key metrics such as revenue,   profit, regional performance, and product sales trends. The dashboard helps management identify high-performing products and regions and make data-driven   business decisions.  
+One of my key achievements was optimizing Power BI dashboards and reducing their load time by 40%        
+
+### How did you reduce load time by 40%
+I implemented a star schema by separating fact and dimension tables.       
+Removed unnecessary columns and rows that were not required for reporting.        
+Avoided unnecessary many-to-many relationships.        
+Filtered data as early as possible.          
+Reviewed complex DAX measures.      
+Reduced unnecessary visuals on report pages.        
+I used Performance Analyzer in Power BI Desktop to identify slow-performing visuals and distinguish between DAX query time, visual display time, and other         processing time.         
+
+
+### How did you calculate 40%
+"How exactly did you calculate the 40% improvement?"
+You can explain the calculation:
+Improvement % = before-after/before x 100
+
 
 ### What were the main tables used in your dataset?
 Fact Table- fact_sales   
@@ -29,6 +46,24 @@ Instead of loading multiple tables into Power BI, the dashboard connects to a si
 ### What is the difference between a fact table and a dimension table?
 Fact tables contain measurable business metrics such as revenue, quantity, and profit.  
 Dimension tables contain descriptive attributes such as product name, region, and customer details.   
+
+
+### Measure VS calculated column
+Measures respond directly to the "filter context" of your report—meaning the result automatically recalculates based on the rows, columns, slicers,     
+and cross-filters applied on the page.      
+
+
+### Row context and Filter context
+ Row context - when Power BI evaluates data one row at a time.        
+ Total Line Sales = Sales[Quantity] * Sales[UnitPrice]     
+
+Filter context - Implicitly by report elements like slicers, page/visual filters, and row/column headers in a table or matrix.     
+Explicitly via DAX functions like CALCULATE or ALL.     
+Total Sales = SUM(Sales[Amount])          
+
+### Context transition
+filter context and have no row context. However, when you use a measure inside an iterator function (or use the CALCULATE function), Power BI performs a process called context transition—it takes the existing row context and turns it into an equivalent filter context for that calculation
+
 
 ### How did you check data quality in the project?
 Data quality checks included:  
