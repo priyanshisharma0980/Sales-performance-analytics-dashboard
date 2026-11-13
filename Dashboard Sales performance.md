@@ -9,6 +9,66 @@ To analyze sales data and build an interactive Power BI dashboard that helps sta
 and sales performance across products, regions, and time periods for better data-driven decision making.  
 The objective of the project was to build a Sales Performance Analytics Dashboard that allows business stakeholders to monitor key metrics such as revenue,   profit, regional performance, and product sales trends. The dashboard helps management identify high-performing products and regions and make data-driven   business decisions.  
 One of my key achievements was optimizing Power BI dashboards and reducing their load time by 40%        
+Worked with 500K+ sales records.         
+Extracted, validated, and transformed data using SQL Server and SSMS.      
+Developed 15+ DAX measures.     
+Analyzed revenue growth, profit margins, regional performance, and top-N products.      
+The dashboard should answer questions such as:        
+1. How much revenue are we generating?          
+2. How much profit are we making?         
+3. Which products are generating maximum revenue?         
+4. Which regions are performing better?          
+5. How much has revenue increased compared with the previous period?          
+6. Are we achieving our sales targets?              
+7. Which products or regions are underperforming?
+
+KPIs -
+Total Orders    
+Total Revenue   
+Total Units Sold    
+Average Order Value (AOV) -  Average revenue generated per order.
+Total Cost    
+Gross Profit     
+Profit Margin     
+
+### Total Revenue =
+SUMX(              
+    Fact_Sales,        
+    Fact_Sales[Quantity] *      
+    Fact_Sales[UnitPrice]     
+) -      
+SUM(Fact_Sales[DiscountAmount])         
+
+### Total Orders =
+DISTINCTCOUNT(Fact_Sales[OrderID])     
+
+### Total Units Sold =
+SUM(Fact_Sales[Quantity])    
+
+### Average Order Value =
+DIVIDE(      
+    [Total Revenue],        
+    [Total Orders],    
+    0     
+)    
+
+### Total Cost =
+SUMX(         
+    Fact_Sales,         
+    Fact_Sales[Quantity] *       
+    Fact_Sales[UnitCost]        
+)    
+
+### Gross Profit =
+[Total Revenue] - [Total Cost]      
+
+### Gross Profit Margin % =
+DIVIDE(        
+    [Gross Profit],      
+    [Total Revenue],     
+    0     
+) * 100        
+
 
 ### How did you reduce load time by 40%
 I implemented a star schema by separating fact and dimension tables.       
@@ -130,16 +190,33 @@ use index
 
 IN POWER BI - Use unable load   
 
-EXECUTION PLAN -  
+### EXECUTION PLAN -  
+ the most efficient way to retrieve, join, and process data for a given query.      
 When query runs the execution plan decides if we do full table scans or check for indexes  
 then it checks if joins are possible or not  
 and then retirve data for select statement  
-and stores the result of execution plan to CACHE  
+and stores the result of execution plan to CACHE     
+Press Ctrl + M to enable Include Actual Execution Plan.          
+It provides information such as:         
+- Actual number of rows.         
+- Actual number of rows read in supported operators.       
+- Actual number of executions.       
+- Runtime warnings.        
+- Actual execution statistics.
+  
+When we write SQL statement - It goes to parser - then query optimiser (it generates a cost effective plan for query execution) - query execution      
+Eg- if we do JOIN-    
+The optimizer considers:     
+- Which table should be accessed first.         
+- Whether to use Nested Loops, Hash Join, or Merge Join.         
+- Whether indexes can help.          
+- Whether filtering should happen before joining.         
+- Which join order and access methods are estimated to be cheaper.          
 
-Reads data from right to left  
+Reads data from right to left    
 Now use TABLE SCAN   click click - Properties   
-check number of rows that are read  
-An index improves query speed.  
+check number of rows that are read     
+An index improves query speed.     
 CREATE INDEX idx_orderid    
 ON EmpSalary1(salary);   
 EXEC sp_helpindex 'EmpSalary1';   
