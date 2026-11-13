@@ -222,6 +222,16 @@ ON EmpSalary1(salary);
 EXEC sp_helpindex 'EmpSalary1';   
 
 
+I used the Actual Execution Plan in SQL Server Management Studio.     
+First, I examined the execution plan to understand the operations SQL Server was performing, such as Table Scans, Index Scans, Index Seeks, Key Lookups,    
+and different join algorithms.      
+I particularly focused on expensive data access operations, repeated Key Lookups, and differences between estimated and actual row counts.     
+For example, when I identified queries reading more records than necessary, I reviewed the filtering conditions and checked whether they were SARGable.     
+I reviewed join conditions and optimized query logic using appropriate joins and CTEs.     
+After making the changes, I compared the execution plans and used SET STATISTICS IO and SET STATISTICS TIME to measure logical reads, CPU time,   
+and elapsed time.     
+By validating the changes against the original queries, I was able to improve query performance. My resume reflects an approximately 45% reduction in     execution time for the SQL optimization work.       
+
 ### How do you handle slowly changing dimensions?
 3 types SCD 1,2,3    
 SCD 1- the new data replaces the old data  
