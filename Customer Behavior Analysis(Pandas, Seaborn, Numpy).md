@@ -29,6 +29,10 @@ purchase_date
 city  
 Each row represented one purchase made by a customer.    
 
+### How Statistics works?
+I used mean and median to understand average customer spending. I compared them to identify whether a few high-value transactions were influencing the average   
+I also used standard deviation to understand how much spending varied across customers and percentiles to identify high-value customer segments      
+K-Means is an unsupervised machine learning algorithm used to divide customers into groups based on similar purchasing behaviour.       
 
 ### How did you calculate the 18% high-value customer figure?
 I calculated the total number of unique customers and then counted the number of customers belonging to the high-value   segment.    
