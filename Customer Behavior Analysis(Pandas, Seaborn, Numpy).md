@@ -7,6 +7,9 @@ Then I created customer segments based on total spending and identified high-val
 
 ### objective was to identify high-value customers and understand their purchasing behavior
 
+### How did you make connection with SQL server
+I used the PyODBC library to establish a connection between Python and SQL Server. I configured the server name, database name, authentication details and ODBC    driver     
+
 ### IMP QUESTIONS
 Who are valuable customers?	Calculate total spend per customer    
 Who buys frequently?	Count orders per customer   
