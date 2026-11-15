@@ -307,6 +307,14 @@ K-Means is an unsupervised clustering algorithm that partitions data into K clus
 ### How did you choose K?
 I evaluated multiple values of K using the Elbow Method and Silhouette Score, then considered cluster interpretability from a business perspective.         
 
+### How it works:
+1. Select features such as total spending, purchase frequency and average order value.       
+2. Choose the number of clusters (K).         
+3. The algorithm initially assigns cluster centroids.              
+4. It calculates the distance between customers and centroids.              
+5. Customers are assigned to their nearest cluster.             
+6. Centroids are recalculated until the clusters stabilize.              
+
 ### What does inertia mean?
 Inertia measures how close the customers are to the centroid of their cluster.     
 Inertia is the sum of squared distances between observations and their assigned cluster centroids. Lower inertia indicates tighter clusters, although it      always tends to decrease as K increases.             
@@ -327,7 +335,22 @@ I used K-Means because the customer segments were not predefined. I wanted to di
 
 
 
+### Linear Regression
+Used to understand the relationship between variables and predict a numerical outcome.                  
+Example: Predicting customer spending based on purchase frequency, customer tenure and other relevant features.             
+Business application: Estimate customer spending based on purchasing behaviour.                
 
+
+### Chi-Square Test
+The Chi-Square test is used to determine whether two categorical variables are associated with each other.      
+Real-world example:      
+You want to determine whether customer age groups have an association with product category preferences.     
+For example:     
+- Age group: 18–25, 26–35, 36–45.    
+- Product category: Electronics, Fashion, Home Appliances.       
+Business interpretation:     
+If the p-value is below 0.05, there is evidence of an association between age group and product category preference.     
+The test does not establish that age causes a particular purchasing preference.       
 
 
 
