@@ -294,12 +294,56 @@ rfm = df.groupby("CustomerID").agg(
 After doing this we get a table with columns - Customerid, recency, frequency and monetary
 
 
+### K-Means works by grouping data points around a central point called a centroid.
+Choose the number of clusters (K)
+Decide how many groups you want to create, such as K=4.
+Initialize centroids
+The algorithm selects four initial cluster centres.
+Calculate distances
+It calculates the distance between every customer and each centroid, usually using Euclidean distance.
+Assign data points
+Each customer is assigned to the nearest centroid.
+Recalculate centroids
+The algorithm calculates the new centre of each cluster using the mean of the assigned data points.
+Repeat the process
+It recalculates distances and reassigns cust
+
 ### Choosing K
 KMeans(n_clusters=4)      
 Two common approaches are:       
 1. Elbow Method         
 2. Silhouette Score
 If you increase K, inertia will almost always decrease.
+
+K represents the number of clusters we want the algorithm to create.     
+
+
+Notice that WCSS decreases significantly until K=4. After K=4, the improvement becomes smaller.    
+Because after four clusters, adding more clusters provides relatively smaller improvements in cluster compactness while making the segmentation more complex.     
+
+### Elbow method
+The Elbow Method helps us identify a suitable number of clusters by calculating WCSS (Within-Cluster Sum of Squares), also called inertia in Scikit-learn.     
+What is WCSS?      
+WCSS measures the sum of squared distances between each data point and its assigned cluster centroid.         
+In simple terms, it tells us how far customers are from the centre of their respective clusters.          
+- Lower WCSS means customers are closer to their cluster centres.          
+- Higher WCSS means customers are more spread out.           
+How does the Elbow Method work?         
+1. Start with K=1.           
+2. Apply K-Means and calculate WCSS.        
+3. Increase K to 2, 3, 4, and so on up to 10.       
+4. Calculate WCSS for every K.          
+5. Plot K against WCSS.            
+6. Identify the point where the reduction in WCSS starts slowing down.
+
+### Feature Selection
+Feature selection means choosing the relevant columns or variables from the dataset that will be used by the K-Means algorithm to create clusters.    
+In simple words, we decide which characteristics of customers should be considered when grouping them.         
+
+For our customer segmentation project, I would initially select:       
+1. Total Spending         
+2. Purchase Frequency          
+3. Average Order Value         
 
 ### What is K MEANS clustering
 K-Means is an unsupervised clustering algorithm that partitions data into K clusters by assigning observations to the nearest centroid and iteratively     updating the centroids to minimize within-cluster squared distances.         
