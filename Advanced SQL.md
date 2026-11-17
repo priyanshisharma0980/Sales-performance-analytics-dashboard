@@ -163,6 +163,10 @@ Instead, use the Create Table As Select (CTAS) pattern:Create a new table with u
 Drop the original table.Rename the new table to the original name.   
 
 
+### • How do you troubleshoot a stored procedure that suddenly runs slowly? 
+Check for active blocking or deadlocks (sp_who2), update outdated table statistics (UPDATE STATISTICS), check for index fragmentation, inspect the execution    plan for parameter sniffing, and monitor server CPU or I/O bottlenecks.      
+
+How do indexes affect database operations? Indexes speed up data retrieval (SELECT queries) by creating quick lookup pointers, but they slow down INSERT, UPDATE   and DELETE operations because the index structure must also be updated.      
 
 ### What are LAG and LEAD?
 These are window functions   
@@ -178,6 +182,10 @@ FROM Sales;
 
 ### SQL SERVER AGENT
 in sql server - got o sql server agents - jobs - new jobs
+
+
+  
+---------------------------------------------------------------------------------------------------------------------------------------------------------      
 
 
 
@@ -221,11 +229,45 @@ JOIN employee m ON e.managerid = m.empid
 where e.salary > m.salary;           
 
 
+### EVEN number of employees
+select emp_id from employee     
+where MOD(empid,2) =0;    
+
+
+### Find Department-Wise Minimum and Maximum Salary Employee Names
+select distinct dept,     
+first_value(empname) over(partition by dept order by salary asc) as minsalary,     
+first_value(empname) over(partition by dept order by salary desc) as maxsalary      
+from employees     
+ORDER BY dept_id;          
+
+
+### Fid customer where order amount is> average order value
+select emp_name, sum(amount) as order_amount       
+from employees        
+group by emp_name      
+having sum(amount)> (select avg(amount) from employees)        
+
+### Find departments with more than 10 employees
+select dept_name, count(*)         
+from employees      
+group by dept_name          
+having count(*)>10;          
 
 
 
+select distinct dept,
+first_value(emp_name) over(partition by dept order by salary desc) as max
+first_value(emp_name) over(partition by dept order by salary asc) as min
+
+------------------------------------------------------------------------------------------------------------------------------------------          
 
 
+### Power BI
+
+
+### total sales
+total sales = calculate(sum(sales[sales_amount]))        
 
 
 
