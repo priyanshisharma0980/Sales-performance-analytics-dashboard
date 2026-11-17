@@ -4,11 +4,13 @@ rank() - skips the numbering
 dense_rank() - sticks to the ranking 1 then 2 then 3     
 
 ### Order of execution of query in SQL
-from       -- chose the table   
+from       -- chose the table  
+Join       
 where      -- filters the base data       
 group by   -- aggreates the base data   
 having     -- filters the data   
-select     -- returns the final data  
+select     -- returns the final data     
+Distinct      
 order by   -- sorts the final data  
 limit      -- returns the limit of data   
 
@@ -180,6 +182,65 @@ in sql server - got o sql server agents - jobs - new jobs
 
 
 ### B. COUNT(*) counts all rows including NULLs, while COUNT(column_name) only counts non-NULL values in that column.  
+
+
+### Find Emp without any projects in 2 tables, emp and project
+select e.emp_id, e.emp_name      
+from emp e left join project p     
+ON e.emp_id = p.emp_id     
+where p.emp_id IS NULL      
+
+
+### Second highest age
+WITH ranked_salaries AS (           
+    SELECT salary, DENSE_RANK() OVER (ORDER BY salary DESC) AS salary_rank             
+    FROM employees          
+)         
+SELECT DISTINCT salary       
+FROM ranked_salaries          
+WHERE salary_rank = N;           
+
+
+### Find Duplicate Records id in a Table
+select id, count(*) as duplicate    
+from employee    
+group by id         
+having count(*)>1;     
+
+### Delete Duplicate Rows While Keeping One Copy
+with cte as(    
+select id, row_number() over(partition by id order by id) as rnk    
+from employees)
+delete from cte where rnk>1;     
+
+### Find Employees Earning More Than Their Managers from details table, emp_name also contains manager names, then thereis emp_id and manager_id 
+self join     
+select e.emp as employee, m.emp as manager    
+from employee e 
+JOIN employee m ON e.managerid = m.empid      
+where e.salary > m.salary;           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
